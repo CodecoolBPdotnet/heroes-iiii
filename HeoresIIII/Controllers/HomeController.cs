@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using HeoresIIII.Models;
+using HeroesIIII.Models;
 
-namespace HeoresIIII.Controllers
+namespace HeroesIIII.Controllers
 {
     public class HomeController : Controller
     {

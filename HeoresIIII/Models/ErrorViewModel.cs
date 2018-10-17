@@ -1,6 +1,6 @@
 using System;
 
-namespace HeoresIIII.Models
+namespace HeroesIIII.Models
 {
     public class ErrorViewModel
     {
