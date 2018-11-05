@@ -14,7 +14,7 @@ namespace HeroesIIII.Models.Skills
 
         public enum ActivateOnEnum
         {
-            OnAttack, OnDamageTaken, OnLevelUp, OnDeath
+            OnAttack, OnDamageTaken, OnDeath, OnVictory
         }
     }
 

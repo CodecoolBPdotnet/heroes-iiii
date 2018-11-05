@@ -5,7 +5,17 @@ using System.Threading.Tasks;
 
 namespace HeroesIIII.Models.Skills
 {
-    public class Scavange
+    public class Scavenge : Skill
     {
+        public Scavenge()
+        {
+            Name = "Scavenge";
+            ActivateOn = ActivateOnEnum.OnVictory;
+        }
+
+        public override void Effect()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
