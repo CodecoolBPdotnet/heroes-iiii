@@ -7,5 +7,9 @@ namespace HeroesIIII.Models.Generators
 {
     public class HeroGenerator
     {
+        public Hero GenerateNewRandomHero()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
