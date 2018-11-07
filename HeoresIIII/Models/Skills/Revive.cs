@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static HeroesIIII.Models.Skills.Skill;
 
 namespace HeroesIIII.Models.Skills
 {
@@ -10,6 +11,7 @@ namespace HeroesIIII.Models.Skills
         public Revive()
         {
             Name = "Revive";
+            Id = 5;
             ActivateOn = ActivateOnEnum.OnDeath;
         }
 

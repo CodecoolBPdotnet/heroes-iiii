@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HeroesIIII.Models.Skills;
 
 namespace HeroesIIII.Models
 {
-    public class Hero
+    public class Hero : GameEntity
     {
         private int _experience;
 
@@ -16,8 +17,7 @@ namespace HeroesIIII.Models
         }
         public int SkillPoinnts { get; set; }
         public int NextLevelExperienceLimit { get; set; }
-        public List<Item> Inventory { get; set; }
-        public List<Skill> Skills { get; set; }
+        public List<Skill> LearnedSkills { get; set; }
         public string Picture { get; set; }
 
         void LevelUp()

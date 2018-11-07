@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static HeroesIIII.Models.Skills.Skill;
 
 namespace HeroesIIII.Models.Skills
 {
@@ -10,6 +11,7 @@ namespace HeroesIIII.Models.Skills
         public Scavenge()
         {
             Name = "Scavenge";
+            Id = 6;
             ActivateOn = ActivateOnEnum.OnVictory;
         }
 

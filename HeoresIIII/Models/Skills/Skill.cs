@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 
 namespace HeroesIIII.Models.Skills
 {
-    public abstract class Skill : GameObject
+    public class Skill
     {
-        public bool Avaliable { get; set; }
-        public ActivateOnEnum ActivateOn { get; set; }
+        public int Id { get; set; }
+        public  string Name { get; set; }
+        public static ActivateOnEnum ActivateOn { get; set; }
 
-        public abstract void Effect();
+        public virtual void Effect()
+        {
+            throw new NotImplementedException();
+        }
 
         public enum ActivateOnEnum
         {
