@@ -5,15 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HeroesIIII.Models;
+using HeroesIIII.Models.Generators;
 
 namespace HeroesIIII.Controllers
 {
     public class LoginController : Controller
     {
         private readonly ApiContext _context;
-        public LoginController(ApiContext context)
+        private readonly Game _game;
+
+        public LoginController(ApiContext context, Game game)
         {
             _context = context;
+            _game = game;
         }
 
         // GET: Login
@@ -39,18 +43,20 @@ namespace HeroesIIII.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
-            collection.TryGetValue("Name", out var Name);
-            collection.TryGetValue("email", out var Email);
-            var TestAccount = new Account
+            collection.TryGetValue("Name", out var name);
+            collection.TryGetValue("email", out var email);
+            var createdAccount = new Account
             {
-                Email = Email,
-                Name = Name
+                Email = email,
+                Name = name
             };
-            Console.WriteLine(collection);
-            _context.Accounts.Add(TestAccount);
+            var generator = new HeroGenerator();
+            createdAccount.Hero = generator.GenerateNewRandomHero();
+            _game.Account = createdAccount;
+            _game.Hero = createdAccount.Hero;
+            _context.Accounts.Add(createdAccount);
             _context.SaveChanges();
-
-            return RedirectToAction(nameof(Index));
+            return Redirect("/game");
         }
 
         // GET: Login/Edit/5
