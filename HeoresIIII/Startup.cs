@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HeroesIIII.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -34,6 +35,7 @@ namespace HeroesIIII
             });
 
             services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase());
+            services.AddSingleton<Game>();
 
             services.AddMvc();
 
@@ -68,7 +70,7 @@ namespace HeroesIIII
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Game}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
