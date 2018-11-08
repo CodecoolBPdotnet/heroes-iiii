@@ -1,4 +1,5 @@
 ﻿
+
 @{
     Layout = null;
 }
@@ -12,26 +13,43 @@
     <title>Hero Page</title>
 </head>
 <body>
-    <div style="width:90px;height:90px;display:inline-block"></div>
-    <h2 style="display:inline;text-align:center;m">Hero Name</h2>
-    <p></p>
-    <h3 style="display:inline-block;margin-left:95px">Level</h3>
-    <h3 style="display:inline;margin-left:30px">Skill Point</h3>
-    <p></p>
-    <div class="atribut" >ATK</div>
-    <div class="atribut" >DEF</div>
-    <div class="atribut" >AGI</div>
-    <div class="atribut" >VIT</div>
-    <p></p>
-    <div class="skill">1</div>
-    <div class="skill">2</div>
-    <p></p>
-    <div class="skill">3</div>
-    <div class="skill">4</div>
-    <p></p>
-    <div class="skill">5</div>
-    <div class="skill">6</div>
+    <div id="top-container">
+        <div id="avatar-container" class="inline" title="Hero Avatar"></div>
+        <div id="name-container" class="inline">
+            <h2 id="name" title="Name"></h2>
+            <h2 class="inline"> | </h2>
+            <h2 id="hp" title="Health Points" class="inline"></h2>
+        </div>
+        <div id="experience-container">
+            <h3 id="level">Level</h3>
+            <h3 id="skillpoint"></h3>
+        </div>
+    </div>
+    <hr/>
     
+    <table id="attributes-container" title="Attributes">
+        <tr>
+            <td class="attribute button" id="atk" title="Attack"></td>
+            <td class="attribute button" id="def" title="Defense"></td>
+            <td class="attribute button" id="agi" title="Agility"></td>
+            <td class="attribute button" id="vit" title="Vitality"></td>
+        </tr>
+    </table>
+    <table id="skills-container" title="Skills">
+        <tr class="skills-row">
+            <td class="skill button" title="CounterAttacck">1</td>
+            <td class="skill button" title="CriticalStrike">2</td>
+        </tr>
+        <tr class="skills-row">
+            <td class="skill button" title="Learning">3</td>
+            <td class="skill button" title="Regenerate">4</td>
+        </tr>
+        <tr class="skills-row">
+            <td class="skill button" title="Revive">5</td>
+            <td class="skill button" title="Scavenge">6</td>
+        </tr>
+    </table>
+
 </body>
 </html>
 

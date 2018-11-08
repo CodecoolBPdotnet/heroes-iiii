@@ -1,9 +1,52 @@
-﻿.atribut {
+﻿body {
+    margin-left: 100px;
+}
+
+div, h2, h3 {
+    /*border: 1px solid red;*/
+}
+
+#avatar-container {
+    background-color: lightgray;
+}
+
+.attribute {
+    margin-left: 100px
+}
+
+#skills-container {
+    margin-left: 70px;
+}
+
+.skill {
+    padding: 20px;
+}
+
+.button {
+    padding: 20px;
+    background-color: lightgray;
+}
+
+#name {
+    display: inline;
+    text-align: center
+}
+
+#level {
+    display: inline;
+    margin-left: 95px
+}
+
+#skillpoint {
     display: inline;
     margin-left: 30px
 }
 
-.skill {
-    display: inline;
-    margin-left: 200px
+#avatar-container {
+    width: 90px;
+    height: 90px;
+}
+
+.inline {
+    display: inline-block;
 }
