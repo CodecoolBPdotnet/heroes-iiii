@@ -10,13 +10,14 @@ namespace HeroesIIII.Models
         public int Damage { get; set; }
         public int Defense { get; set; }
         public int Agility { get; set; }
+        public int Vitality { get; set; }
         public int MaximumHealth { get; set; }
-        public int Health { get; set; }
+        public int CurrentHealth { get; set; }
         public int Level { get; set; }
 
-        void Attack(GameEntity target)
+        public virtual void Attack(GameEntity target)
         {
-            throw new NotImplementedException();
+            target.CurrentHealth -= (int) (Damage * (target.Defense*0.5));
         }
     }
 }
