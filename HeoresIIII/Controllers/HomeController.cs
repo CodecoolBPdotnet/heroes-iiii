@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HeroesIIII.Models;
+using HeroesIIII.Models.Generators;
 
 namespace HeroesIIII.Controllers
 {
@@ -12,6 +13,16 @@ namespace HeroesIIII.Controllers
     {
         public IActionResult Index()
         {
+            var Herogen = new HeroGenerator();
+            var Hero = Herogen.GenerateNewRandomHero();
+            var Enemygen = new EnemyGenerator();
+            var Enemy = Enemygen.GenerateRandomEnemy(Hero.Level);
+            var Game = new Game
+            {
+                Hero = Hero,
+                Enemy = Enemy
+            };
+            Game.Fight();
             return View();
         }
 
