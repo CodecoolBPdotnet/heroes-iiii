@@ -1,0 +1,21 @@
+﻿.atribut {
+    display: inline;
+    margin-left: 100px
+}
+
+.skill {
+    display: inline;
+    margin-left: 85px
+}
+#heroname {
+    display: inline;
+    text-align: center
+}
+#level {
+    display: inline-block;
+    margin-left: 95px
+}
+#skillpoint {
+    display: inline;
+    margin-left: 30px
+}
