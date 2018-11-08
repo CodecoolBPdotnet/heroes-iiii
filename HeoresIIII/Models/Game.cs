@@ -7,6 +7,8 @@ namespace HeroesIIII.Models
 {
     public class Game
     {
+        public Account Account { get; set; }
+
         public Hero Hero { get; set; }
 
         public Enemy Enemy { get; set; }
