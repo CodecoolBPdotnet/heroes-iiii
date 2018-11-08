@@ -7,6 +7,6 @@ namespace HeroesIIII.Models
 {
     public class Enemy : GameEntity
     {
-        
+        public int ExperienceDrop { get; set; }
     }
 }

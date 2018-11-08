@@ -15,14 +15,17 @@ namespace HeroesIIII.Models
             get { return _experience; }
             set { _experience = value; }
         }
-        public int SkillPoinnts { get; set; }
+        public int SkillPoints { get; set; }
         public int NextLevelExperienceLimit { get; set; }
         public List<Skill> LearnedSkills { get; set; }
         public string Picture { get; set; }
 
-        void LevelUp()
+        public void LevelUp()
         {
-            throw new NotImplementedException();
+            if (Experience > NextLevelExperienceLimit)
+            {
+                SkillPoints += 4;
+            } ;
         }
     }
 }
