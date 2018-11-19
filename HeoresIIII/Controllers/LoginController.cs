@@ -23,7 +23,7 @@ namespace HeroesIIII.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            return Redirect("/login/create");
         }
 
         // GET: Login/Details/5
