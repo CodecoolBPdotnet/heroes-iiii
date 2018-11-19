@@ -12,8 +12,12 @@ namespace HeroesIIII.Models
         private int _experience;
         public int Experience
         {
-            get => _experience;
-            set => _experience = value;
+            get { return _experience; }
+            set
+            {
+                _experience = value;
+                LevelUp();
+            }
         }
         public int SkillPoints { get; set; }
         public int NextLevelExperienceLimit { get; set; }
@@ -25,8 +29,11 @@ namespace HeroesIIII.Models
         {
             if (Experience > NextLevelExperienceLimit)
             {
+                _experience -= NextLevelExperienceLimit;
                 SkillPoints += 4;
-            }
+                Level++;
+                NextLevelExperienceLimit += 100 + 20 * Level;
+            };
         }
 
         public void Learn(Skill skill)
