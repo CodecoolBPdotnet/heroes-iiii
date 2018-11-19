@@ -8,14 +8,14 @@ namespace HeroesIIII.Models.Skills
 {
     public  class Regenerate : Skill
     {
-        public Regenerate()
+        public Regenerate(Hero hero, Game game) : base(game)
         {
             Name = "Regenerate";
             Id = 4;
-            ActivateOn = ActivateOnEnum.OnVictory;
+            game.GetHitEvent += Effect;
         }
 
-        public override void Effect()
+        public override void Effect(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HeroesIIII.Models
 {
@@ -17,7 +14,7 @@ namespace HeroesIIII.Models
 
         public virtual void Attack(GameEntity target)
         {
-            target.CurrentHealth -= (int) (Damage * (target.Defense*0.5));
+            target.CurrentHealth -= Damage - (target.Defense / 2);
         }
     }
 }

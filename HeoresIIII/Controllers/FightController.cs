@@ -6,6 +6,7 @@ using HeroesIIII.Models;
 using HeroesIIII.Models.Generators;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HeroesIIII.Controllers
 {
@@ -28,6 +29,7 @@ namespace HeroesIIII.Controllers
         {
             var EnemyGenerator = new EnemyGenerator();
             _game.Fight(EnemyGenerator.GenerateRandomEnemy(_game.Account.Hero.Level));
+            _context.Entry(_game.Hero).State = EntityState.Modified;
             _context.SaveChanges();
         }
     }

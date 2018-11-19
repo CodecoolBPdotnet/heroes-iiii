@@ -8,14 +8,14 @@ namespace HeroesIIII.Models.Skills
 {
     public class Revive : Skill
     {
-        public Revive()
+        public Revive(Hero hero, Game game) : base(game)
         {
             Name = "Revive";
             Id = 5;
-            ActivateOn = ActivateOnEnum.OnDeath;
+            game.DeathEvent += Effect;
         }
 
-        public override void Effect()
+        public override void Effect(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
