@@ -19,14 +19,12 @@ namespace HeroesIIII.Models.Generators
                 NextLevelExperienceLimit = 100
             };
             DistributeAttributePoints(CreatedHero, 60);
-
             return CreatedHero;
         }
 
         private string GenerateRandomHeroName()
         {
             HttpClient client = new HttpClient();
-
             string response = client.GetStringAsync("http://names.drycodes.com/10?nameOptions=funnyWords").Result;
             var data = JsonConvert.DeserializeObject<List<string>>(response);
             string RandomlyGeneratedName = data[0].Replace("_"," ");
