@@ -26,8 +26,7 @@ namespace HeroesIIII.Controllers
         [HttpGet]
         public void Fight()
         {
-            var EnemyGenerator = new EnemyGenerator();
-            _game.Fight(EnemyGenerator.GenerateRandomEnemy(_game.Account.Hero.Level));
+            _game.Fight();
             _context.SaveChanges();
         }
     }

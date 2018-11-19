@@ -14,7 +14,6 @@ namespace HeroesIIII.Models
 
         public void Fight(Enemy enemy)
         {
-            
             double HeroTurn = 0;
             double EnemyTurn = 0;
             while(Hero.CurrentHealth > 0 && enemy.CurrentHealth > 0)
@@ -36,6 +35,13 @@ namespace HeroesIIII.Models
                 Hero.CurrentHealth += (int) (Hero.MaximumHealth * 0.20);
                 if (Hero.CurrentHealth > Hero.MaximumHealth) { Hero.CurrentHealth = Hero.MaximumHealth; }
             }
+        }
+
+        internal void Fight()
+        {
+
+            var EnemyGenerator = new EnemyGenerator();
+            Fight(EnemyGenerator.GenerateRandomEnemy(Hero.Level));
         }
     }
 }
