@@ -29,15 +29,15 @@ namespace HeroesIIII.Models.Generators
         {
             Random rnd = new Random();
             int minimumAttribute = (int)Math.Round(avaliablePoints / 5, 0);
-            target.Damage = rnd.Next(minimumAttribute, (int)(Math.Round(avaliablePoints/4,0) + 1));
+            target.Damage = rnd.Next(minimumAttribute, (int)(Math.Round(avaliablePoints/4,0) + 3));
             avaliablePoints -= target.Damage;
-            target.Defense = rnd.Next(minimumAttribute, (int)(Math.Round(avaliablePoints / 3, 0) + 1));
+            target.Defense = rnd.Next(minimumAttribute, (int)(Math.Round(avaliablePoints / 3, 0) + 3));
             avaliablePoints -= target.Defense;
-            target.Agility = rnd.Next(minimumAttribute, (int)(Math.Round(avaliablePoints / 2, 0) + 1));
+            target.Agility = rnd.Next(minimumAttribute, (int)(Math.Round(avaliablePoints / 2, 0) + 3));
             avaliablePoints -= target.Agility;
             target.Vitality = (int)avaliablePoints;
             target.MaximumHealth += 10 * target.Vitality;
-            target.CurrentHealth += target.MaximumHealth;
+            target.CurrentHealth = target.MaximumHealth;
         }
     }
 }

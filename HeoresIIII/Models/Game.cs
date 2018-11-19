@@ -1,4 +1,5 @@
 ﻿using System;
+using HeroesIIII.Models.Generators;
 
 namespace HeroesIIII.Models
 {
@@ -25,7 +26,7 @@ namespace HeroesIIII.Models
         public Hero Hero { get; set; }
 
         public void Fight(Enemy enemy)
-        { 
+        {
             double HeroTurn = 0;
             double EnemyTurn = 0;
             while (Hero.CurrentHealth > 0 && enemy.CurrentHealth > 0)
@@ -51,6 +52,13 @@ namespace HeroesIIII.Models
                 if (Hero.CurrentHealth > Hero.MaximumHealth)
                     Hero.CurrentHealth = Hero.MaximumHealth;
             }
+        }
+
+        internal void Fight()
+        {
+
+            var EnemyGenerator = new EnemyGenerator();
+            Fight(EnemyGenerator.GenerateRandomEnemy(Hero.Level));
         }
     }
 }
