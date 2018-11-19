@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HeroesIIII.Models.Skills
 {
@@ -16,7 +13,10 @@ namespace HeroesIIII.Models.Skills
 
         public override void Effect(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var hero = ((Game)sender).Hero;
+            var target = ((GameEventArgs)e).Target;
+            hero.Attack(target);
+            Console.WriteLine($"{hero} attacked {target} back!");
         }
     }
 }
