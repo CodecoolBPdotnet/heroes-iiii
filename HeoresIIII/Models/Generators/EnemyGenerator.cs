@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace HeroesIIII.Models.Generators
+﻿namespace HeroesIIII.Models.Generators
 {
     public class EnemyGenerator
     {
@@ -17,7 +12,7 @@ namespace HeroesIIII.Models.Generators
                 MaximumHealth = 10 * (5 + HeroLevel),
                 CurrentHealth = 10 * (5 + HeroLevel)
             };
-            HeroGenerator.DistributeAttributePoints(CreatedEnemy, 5*(2 + HeroLevel));
+            HeroGenerator.DistributeAttributePoints(CreatedEnemy, 5 * (2 + HeroLevel));
             return CreatedEnemy;
         }
 

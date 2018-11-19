@@ -8,14 +8,14 @@ namespace HeroesIIII.Models.Skills
 {
     public  class Learning : Skill
     {
-        public Learning()
+        public Learning(Hero hero, Game game) : base(game)
         {
             Name = "Learning";
             Id = 3;
-            ActivateOn = ActivateOnEnum.OnVictory;
+            game.WinBattleEvent += Effect;
         }
 
-        public override void Effect()
+        public override void Effect(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }

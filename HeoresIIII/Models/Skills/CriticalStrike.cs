@@ -1,23 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static HeroesIIII.Models.Skills.Skill;
 
 namespace HeroesIIII.Models.Skills
 {
     public class CriticalStrike : Skill
     {
-        public CriticalStrike()
+        public CriticalStrike(Hero hero, Game game) : base(game)
         {
             Name = "Critical Strike";
             Id = 2;
-            ActivateOn = ActivateOnEnum.OnAttack;
+            game.AttackEvent += Effect;
         }
 
-        public override void Effect()
+        public override void Effect(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Hero hero = ((Game)sender).Hero;
+            hero.Attack(((GameEventArgs)e).Target);
+            Console.WriteLine($"{hero} dealt double damage!");
         }
     }
 }

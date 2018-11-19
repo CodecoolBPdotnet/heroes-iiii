@@ -1,23 +1,24 @@
-﻿using System;
+﻿using HeroesIIII.Models.Skills;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HeroesIIII.Models.Skills;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
 
 namespace HeroesIIII.Models
 {
     public class Hero : GameEntity
     {
-        private int _experience;
 
+        private int _experience;
         public int Experience
         {
-            get { return _experience; }
-            set { _experience = value; }
+            get => _experience;
+            set => _experience = value;
         }
         public int SkillPoints { get; set; }
         public int NextLevelExperienceLimit { get; set; }
-        public List<Skill> LearnedSkills { get; set; }
+        [NotMapped] // temporary workaround
+        public List<Skill> LearnedSkills { get; set; } = new List<Skill>();
         public string Picture { get; set; }
 
         public void LevelUp()
@@ -25,7 +26,12 @@ namespace HeroesIIII.Models
             if (Experience > NextLevelExperienceLimit)
             {
                 SkillPoints += 4;
-            } ;
+            }
+        }
+
+        public void Learn(Skill skill)
+        {
+            LearnedSkills.Add(skill);
         }
     }
 }
