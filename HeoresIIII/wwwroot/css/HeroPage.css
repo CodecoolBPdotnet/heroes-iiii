@@ -15,11 +15,17 @@ div, h2, h3 {
 }
 
 #skills-container {
+    margin-top: 40px;
     margin-left: 70px;
+}
+
+.attribute-title {
+    text-align: center
 }
 
 .skill {
     padding: 20px;
+    margin-right: 40px;
 }
 
 .button {

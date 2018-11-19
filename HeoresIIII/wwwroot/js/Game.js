@@ -1,12 +1,30 @@
-﻿window.addEventListener("load", LoadHero());
+﻿window.onload = StartUp
 
+function SkillPointAviable() {
+    document.getElementById("atk").style.backgroundColor = "rgb(237, 160, 18)";
+    document.getElementById("def").style.backgroundColor = "rgb(237, 160, 18)";
+    document.getElementById("agi").style.backgroundColor = "rgb(237, 160, 18)";
+    document.getElementById("vit").style.backgroundColor = "rgb(237, 160, 18)";
+}
+function SkillPointDisable() {
+    document.getElementById("atk").style.backgroundColor = "default";
+    document.getElementById("def").style.backgroundColor = "default";
+    document.getElementById("agi").style.backgroundColor = "default";
+    document.getElementById("vit").style.backgroundColor = "default";
+}
 
 function LoadHero() {
-    
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var hero = JSON.parse(this.responseText);
+    fetch('api/Hero/1')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (myJson) {
+            var hero = myJson;
+            if (hero.skillPoints > 0) {
+                SkillPointAviable();
+            } else {
+                SkillPointDisable()
+            }
             document.getElementById("name").innerHTML = hero["name"];
             document.getElementById("hp").innerHTML = hero["currentHealth"];
             document.getElementById("level").innerHTML = "Level: " + hero["level"];
@@ -15,19 +33,21 @@ function LoadHero() {
             document.getElementById("def").innerHTML = hero["defense"];
             document.getElementById("agi").innerHTML = hero["agility"];
             document.getElementById("vit").innerHTML = hero["vitality"];
-            var element = document.getElementById("fightbutton");
-            element.addEventListener("click", function () {
-                var fhttp = new XMLHttpRequest();
-                fhttp.open("GET", "api/fight", true);
-                console.log(hero);  // TODO remove later
-                fhttp.send();
-            });
-
-        }
-    };
-    xhttp.open("GET", "api/Hero/1", true);
-    xhttp.send();
-
-   
-    
+        });
 }
+
+function Fight() {
+    fetch('api/fight')
+    LoadHero()
+}
+
+function ButtonSetUp() {
+    var element = document.getElementById("fightbutton");
+    element.addEventListener("click", Fight);
+}; 
+
+function StartUp() {
+    LoadHero();
+    ButtonSetUp();
+}
+
