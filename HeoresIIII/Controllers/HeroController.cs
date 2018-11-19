@@ -15,10 +15,12 @@ namespace HeroesIIII.Controllers
     public class HeroController : ControllerBase
     {
         private readonly ApiContext _context;
+        private readonly Game _game;
 
-        public HeroController(ApiContext context)
+        public HeroController(ApiContext context, Game game)
         {
             _context = context;
+            _game = game;
         }
 
         // GET: api/Hero
