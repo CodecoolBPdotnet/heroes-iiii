@@ -8,14 +8,14 @@ namespace HeroesIIII.Models.Skills
 {
     public class Scavenge : Skill
     {
-        public Scavenge()
+        public Scavenge(Hero hero, Game game) : base(game)
         {
             Name = "Scavenge";
             Id = 6;
-            ActivateOn = ActivateOnEnum.OnVictory;
+            game.WinBattleEvent += Effect;
         }
 
-        public override void Effect()
+        public override void Effect(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
