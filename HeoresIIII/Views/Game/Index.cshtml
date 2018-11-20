@@ -1,5 +1,4 @@
 ﻿
-
 @{
     Layout = null;
 }
@@ -14,17 +13,23 @@
 </head>
 <body>
     <div id="top-container">
-        <div id="avatar-container" class="inline" title="Hero Avatar"></div>
+        <div id="avatar-container" class="inline" title="Hero Avatar">
+            <img id="avatar" src=""></img>
+        </div>
         <div id="name-container" class="inline">
             <h2 id="name" title="Name"></h2>
             <h2 class="inline"> | </h2>
             <h2 id="hp" title="Health Points" class="inline"></h2>
         </div>
-        <div id="experience-container">
+        <div style="display:block">
+            <label style="display:block">EXP: <div class="inline" id="expcount"> 20/22</div></label>
+            <progress style="width:300px" value="0" max="100" id="expbar"></progress>
+        </div>
+        <div id="skillpoint-container">
             <h3 id="level">Level</h3>
             <div class="inline">
-            <h3 class="inline" style="margin-left:30px">Skillpoints: </h3> 
-            <h3 id="skillpoint"></h3>
+                <h3 class="inline" style="margin-left:30px">Skillpoints: </h3>
+                <h3 id="skillpoint"></h3>
             </div>
         </div>
     </div>

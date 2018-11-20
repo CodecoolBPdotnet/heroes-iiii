@@ -2,7 +2,7 @@
 
 var game = {};
 
-function SkillPointAviable() {
+function SkillPointAvailable() {
     document.getElementById("atk").style.backgroundColor = "rgb(237, 160, 18)";
     document.getElementById("def").style.backgroundColor = "rgb(237, 160, 18)";
     document.getElementById("agi").style.backgroundColor = "rgb(237, 160, 18)";
@@ -24,10 +24,14 @@ function LoadHero() {
             var hero = myJson;
             game.hero = hero;
             if (hero.skillPoints > 0) {
-                SkillPointAviable();
+                SkillPointAvailable();
             } else {
                 SkillPointDisable()
             }
+            document.getElementById("avatar").innerHTML = game.hero.picture;
+            document.getElementById("expbar").value = game.hero.experience;
+            document.getElementById("expbar").max = game.hero.nextLevelExperienceLimit;
+            document.getElementById("expcount").innerHTML = game.hero.experience + " / " + game.hero.nextLevelExperienceLimit;
             document.getElementById("name").innerHTML = hero["name"];
             document.getElementById("hp").innerHTML = hero["currentHealth"]+ " HP";
             document.getElementById("level").innerHTML = "Level: " + hero["level"];
