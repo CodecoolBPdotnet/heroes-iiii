@@ -1,5 +1,5 @@
-﻿using System;
-using HeroesIIII.Models.Generators;
+﻿using HeroesIIII.Models.Generators;
+using System;
 
 namespace HeroesIIII.Models
 {
@@ -27,6 +27,7 @@ namespace HeroesIIII.Models
 
         public void Fight(Enemy enemy)
         {
+            var eventArgs = new GameEventArgs { Target = enemy };
             double HeroTurn = 0;
             double EnemyTurn = 0;
             while (Hero.CurrentHealth > 0 && enemy.CurrentHealth > 0)
@@ -35,23 +36,45 @@ namespace HeroesIIII.Models
                 if (HeroTurn > 100)
                 {
                     Hero.Attack(enemy);
-                    OnAttackEvent(new GameEventArgs { Target = enemy });
+                    OnAttackEvent(eventArgs);
                     HeroTurn -= 100;
                 }
                 EnemyTurn += 3 + enemy.Agility * 0.25;
                 if (EnemyTurn > 100)
                 {
                     enemy.Attack(Hero);
+                    OnGetHitEvent(eventArgs);
                     EnemyTurn -= 100;
                 }
             }
             if (Hero.CurrentHealth > 0)
             {
                 Hero.Experience += enemy.ExperienceDrop;
-                Hero.CurrentHealth += (int)(Hero.MaximumHealth * 0.20);
-                if (Hero.CurrentHealth > Hero.MaximumHealth)
-                    Hero.CurrentHealth = Hero.MaximumHealth;
+                OnWinBattleEvent(eventArgs);
             }
+            else
+            {
+                // TODO battle lost, hero death
+                OnDeathEvent(eventArgs);
+            }
+        }
+
+        public void WinBattle(Enemy enemy)
+        {
+            GetEnemyExp(enemy);
+            // TODO add a random chance to get items
+            GetEnemyDrops(enemy);
+
+        }
+
+        public void GetEnemyExp(Enemy enemy)
+        {
+            Hero.Experience += enemy.ExperienceDrop;
+        }
+        public void GetEnemyDrops(Enemy enemy)
+        {
+            // TODO uncomment once items are implemented
+            // Hero.Items += enemy.Items;
         }
 
         internal void Fight()

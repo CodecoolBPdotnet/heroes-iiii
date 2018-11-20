@@ -8,7 +8,6 @@ namespace HeroesIIII.Models
 {
     public class Hero : GameEntity
     {
-
         private int _experience;
         public int Experience
         {

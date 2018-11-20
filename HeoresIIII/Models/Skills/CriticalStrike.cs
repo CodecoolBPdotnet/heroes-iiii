@@ -13,8 +13,9 @@ namespace HeroesIIII.Models.Skills
 
         public override void Effect(object sender, EventArgs e)
         {
-            Hero hero = ((Game)sender).Hero;
-            hero.Attack(((GameEventArgs)e).Target);
+            var hero = ((Game)sender).Hero;
+            var target = ((GameEventArgs)e).Target;
+            hero.Attack(target);
             Console.WriteLine($"{hero} dealt double damage!");
         }
     }

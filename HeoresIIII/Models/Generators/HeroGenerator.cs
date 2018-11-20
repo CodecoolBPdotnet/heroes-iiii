@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 
 namespace HeroesIIII.Models.Generators
 {
@@ -15,13 +19,15 @@ namespace HeroesIIII.Models.Generators
                 NextLevelExperienceLimit = 100
             };
             DistributeAttributePoints(CreatedHero, 60);
-
             return CreatedHero;
         }
 
         private string GenerateRandomHeroName()
         {
-            string RandomlyGeneratedName = "Lancelot";
+            HttpClient client = new HttpClient();
+            string response = client.GetStringAsync("http://names.drycodes.com/10?nameOptions=funnyWords").Result;
+            var data = JsonConvert.DeserializeObject<List<string>>(response);
+            string RandomlyGeneratedName = data[0].Replace("_"," ");
             return RandomlyGeneratedName;
         }
 

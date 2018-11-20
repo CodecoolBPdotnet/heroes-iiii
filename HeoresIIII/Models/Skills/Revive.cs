@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static HeroesIIII.Models.Skills.Skill;
 
 namespace HeroesIIII.Models.Skills
 {
     public class Revive : Skill
     {
+        private int _revivePercent = 60;
+        private int _remainingLives = 1;
         public Revive(Hero hero, Game game) : base(game)
         {
             Name = "Revive";
@@ -17,7 +15,9 @@ namespace HeroesIIII.Models.Skills
 
         public override void Effect(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var hero = ((Game)sender).Hero;
+            if (_remainingLives-- >= 1)
+                hero.CurrentHealth = hero.MaximumHealth * _revivePercent / 100;
         }
     }
 }
