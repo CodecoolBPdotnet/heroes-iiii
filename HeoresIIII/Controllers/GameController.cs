@@ -14,8 +14,8 @@ namespace HeroesIIII.Controllers
         {
             _context = context;
 
-            CreateTestHero();
-            TestFight();
+            //CreateTestHero();
+            //TestFight();
         }
 
         private void TestFight()
