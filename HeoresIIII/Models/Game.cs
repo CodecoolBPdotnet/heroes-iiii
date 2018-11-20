@@ -1,33 +1,52 @@
 ﻿using HeroesIIII.Models.Generators;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HeroesIIII.Models
 {
-    public class GameEventArgs : EventArgs
-    {
-        public GameEntity Target;
-    }
     public class Game
     {
-        public event EventHandler AttackEvent;
+        public event EventHandler AttackEvent; // replace all the EventHandlers with custom delegates
         public event EventHandler GetHitEvent;
         public event EventHandler WinBattleEvent;
-        public event EventHandler LevelUpEvent;
         public event EventHandler DeathEvent;
         public void OnAttackEvent(GameEventArgs e) => AttackEvent?.Invoke(this, e);
         public void OnGetHitEvent(GameEventArgs e) => GetHitEvent?.Invoke(this, e);
         public void OnWinBattleEvent(GameEventArgs e) => WinBattleEvent?.Invoke(this, e);
-        public void OnLevelUpEvent(GameEventArgs e) => LevelUpEvent?.Invoke(this, e);
         public void OnDeathEvent(GameEventArgs e) => DeathEvent?.Invoke(this, e);
 
         public int Id { get; set; }
-
         public Account Account { get; set; }
-        public Hero Hero { get; set; }
 
+        private Hero _hero;
+        public Hero Hero
+        {
+            get => _hero; set
+            {
+                _hero = value;
+                _hero.NewSkillEvent += NewSkill;
+            }
+        }
+
+        private void NewSkill(object sender, EventArgs e)
+        {
+            List<Type> availableSkills = Hero.Skills.Except(Hero.LearnedSkills).ToList();
+            var randSkill = Hero.Skills[new Random().Next(Hero.Skills.Count - 1)];
+            randSkill
+                .GetConstructor(new Type[] { GetType() })
+                .Invoke(new object[] { this });
+            Hero.Skills.Remove(randSkill);
+        }
+
+        public void Fight()
+        {
+            var EnemyGenerator = new EnemyGenerator();
+            Fight(EnemyGenerator.GenerateRandomEnemy(Hero.Level));
+        }
         public void Fight(Enemy enemy)
         {
-            var eventArgs = new GameEventArgs { Target = enemy };
+            var eventArgs = new GameEventArgs { Enemy = enemy };
             double HeroTurn = 0;
             double EnemyTurn = 0;
             while (Hero.CurrentHealth > 0 && enemy.CurrentHealth > 0)
@@ -75,13 +94,6 @@ namespace HeroesIIII.Models
         {
             // TODO uncomment once items are implemented
             // Hero.Items += enemy.Items;
-        }
-
-        internal void Fight()
-        {
-
-            var EnemyGenerator = new EnemyGenerator();
-            Fight(EnemyGenerator.GenerateRandomEnemy(Hero.Level));
         }
     }
 }

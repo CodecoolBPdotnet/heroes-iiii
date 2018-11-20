@@ -5,7 +5,7 @@ namespace HeroesIIII.Models.Skills
     public class Regenerate : Skill
     {
         private int _regeneratePercent = 20;
-        public Regenerate(Hero hero, Game game) : base(game)
+        public Regenerate(Game game) : base(game)
         {
             Name = "Regenerate";
             Id = 4;

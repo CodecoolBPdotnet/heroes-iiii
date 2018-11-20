@@ -7,7 +7,7 @@ namespace HeroesIIII.Models.Skills
         private int _percentChance = 25;
         private Random _random = new Random();
 
-        public Scavenge(Hero hero, Game game) : base(game)
+        public Scavenge(Game game) : base(game)
         {
             Name = "Scavenge";
             Id = 6;
@@ -16,7 +16,7 @@ namespace HeroesIIII.Models.Skills
 
         public override void Effect(object sender, EventArgs e)
         {
-            var target = ((GameEventArgs)e).Target;
+            var target = ((GameEventArgs)e).Enemy;
             var enemy = target as Enemy;
 
             if (_random.Next(100) > _percentChance)
