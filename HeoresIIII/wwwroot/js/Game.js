@@ -28,7 +28,7 @@ function LoadHero() {
             } else {
                 SkillPointDisable()
             }
-            document.getElementById("avatar").innerHTML = game.hero.picture;
+            document.getElementById("avatar").src = game.hero.picture;
             document.getElementById("expbar").value = game.hero.experience;
             document.getElementById("expbar").max = game.hero.nextLevelExperienceLimit;
             document.getElementById("expcount").innerHTML = game.hero.experience + " / " + game.hero.nextLevelExperienceLimit;

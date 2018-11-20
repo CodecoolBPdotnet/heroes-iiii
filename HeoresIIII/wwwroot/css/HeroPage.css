@@ -5,6 +5,12 @@
 #avatar-container {
     background-color: lightgray;
 }
+img {
+    width: 100px;
+    max-width: 100px;
+    height:100px;
+    max-height:100px
+}
 
 .attribute {
     margin-left: 100px;
@@ -44,8 +50,8 @@
 }
 
 #avatar-container {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
 }
 
 .inline {
