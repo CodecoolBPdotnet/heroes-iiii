@@ -40,13 +40,16 @@ namespace HeroesIIII.Models
             Hero.Skills.Remove(randSkill);
         }
 
-        public void Fight()
+        public FightResult Fight()
         {
             var EnemyGenerator = new EnemyGenerator();
-            Fight(EnemyGenerator.GenerateRandomEnemy(Hero.Level));
+            var result = Fight(EnemyGenerator.GenerateRandomEnemy(Hero.Level));
+            return result;
         }
-        public void Fight(Enemy enemy)
+        public FightResult Fight(Enemy enemy)
         {
+            FightResult fightresult = new FightResult();
+            fightresult.DefeatedEnemy = enemy;
             var eventArgs = new GameEventArgs { Enemy = enemy };
             double HeroTurn = 0;
             double EnemyTurn = 0;
@@ -56,6 +59,7 @@ namespace HeroesIIII.Models
                 if (HeroTurn > 100)
                 {
                     Hero.Attack(enemy);
+                    fightresult.FightLog.Add(("Hero", $"Hero dealt {Hero.Damage} damage to the {enemy.Name}"));
                     OnAttackEvent(eventArgs);
                     HeroTurn -= 100;
                 }
@@ -63,6 +67,7 @@ namespace HeroesIIII.Models
                 if (EnemyTurn > 100)
                 {
                     enemy.Attack(Hero);
+                    fightresult.FightLog.Add(("Enemy", $"{enemy.Name} dealt {enemy.Damage} damage to the Hero "));
                     OnGetHitEvent(eventArgs);
                     EnemyTurn -= 100;
                 }
@@ -70,13 +75,16 @@ namespace HeroesIIII.Models
             if (Hero.CurrentHealth > 0)
             {
                 Hero.Experience += enemy.ExperienceDrop;
+                fightresult.FightEndMessage = $"You defeat {enemy.Name} and you gain {enemy.ExperienceDrop}";
                 OnWinBattleEvent(eventArgs);
             }
             else
             {
                 // TODO battle lost, hero death
+                fightresult.FightEndMessage = $"You killed by {enemy.Name}";
                 OnDeathEvent(eventArgs);
             }
+            return fightresult;
         }
 
         public void WinBattle(Enemy enemy)

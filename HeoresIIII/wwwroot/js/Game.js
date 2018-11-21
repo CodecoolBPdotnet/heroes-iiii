@@ -78,14 +78,28 @@ function IncreaseAttribute(attribute) {
     }
 }
 
+function ShowFightResult(result) {
+    document.getElementById("enemy-name").innerHTML = result["defeatedEnemy"]["name"];
+    document.getElementById("enemy-attributes-container").style.display = "table";
+    document.getElementById("enemy-atk").innerHTML = result["defeatedEnemy"]["damage"];
+    document.getElementById("enemy-def").innerHTML = result["defeatedEnemy"]["defense"];
+    document.getElementById("enemy-agi").innerHTML = result["defeatedEnemy"]["agility"];
+    document.getElementById("enemy-vit").innerHTML = result["defeatedEnemy"]["vitality"];
+    document.getElementById("enemy-hp").innerHTML = "Maximum HP: " + result["defeatedEnemy"]["maximumHealth"];
+}
+
+
 function Fight() {
     fetch('api/fight').then(
         function (response) {
             if (response.status == 200) {
                 LoadHero();
+                return response.json();
             }
         }
-    )
+    ).then(function (myJson) {
+        ShowFightResult(myJson)
+    })
 }
 
 function ButtonSetUp() {
