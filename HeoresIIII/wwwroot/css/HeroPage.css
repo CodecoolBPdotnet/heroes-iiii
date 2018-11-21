@@ -1,25 +1,21 @@
 ﻿body {
-    margin-left: 100px;
+    margin: 0;
 }
 
 #avatar-container {
     background-color: lightgray;
 }
+
 img {
     width: 100px;
     max-width: 100px;
-    height:100px;
-    max-height:100px
+    height: 100px;
+    max-height: 100px
 }
 
 .attribute {
     margin-left: 100px;
     background-color: gray;
-}
-
-#skills-container {
-    margin-top: 40px;
-    margin-left: 70px;
 }
 
 .attribute-title {
@@ -49,6 +45,10 @@ img {
     display: inline;
 }
 
+#skillpoint-container{
+    height:50px;
+}
+
 #avatar-container {
     width: 100px;
     height: 100px;
@@ -57,3 +57,48 @@ img {
 .inline {
     display: inline-block;
 }
+
+.grid-heropicture {
+    grid-area: heropicture;
+}
+
+.grid-heroname {
+    grid-area: heroname;
+}
+
+.grid-herohp {
+    grid-area: herohp;
+}
+
+.grid-heroexp {
+    grid-area: heroexp;
+}
+
+.grid-heroattr {
+    grid-area: heroattr;
+}
+
+.grid-heroskill {
+    grid-area: heroskill;
+}
+
+.grid-enemy {
+    grid-area: enemy;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 'heropicture heroname herohp enemy enemy enemy' 'heroexp heroexp heroexp enemy enemy enemy' 'heroattr heroattr heroattr enemy enemy enemy' 'heroskill heroskill heroskill enemy enemy enemy';
+    grid-gap: 20px;
+    background-color: #ffad33;
+    padding: 20px;
+    height: 100vh;
+}
+
+    .grid-container > div {
+        background-color: rgba(255, 255, 255, 0.3);
+        text-align: center;
+        padding: 15px 0;
+        font-size: 22px;
+    }
