@@ -1,5 +1,4 @@
 ﻿
-
 @{
     Layout = null;
 }
@@ -14,20 +13,35 @@
 </head>
 <body>
     <div id="top-container">
-        <div id="avatar-container" class="inline" title="Hero Avatar"></div>
+        <div id="avatar-container" class="inline" title="Hero Avatar">
+            <img id="avatar" src="">
+        </div>
         <div id="name-container" class="inline">
             <h2 id="name" title="Name"></h2>
             <h2 class="inline"> | </h2>
             <h2 id="hp" title="Health Points" class="inline"></h2>
         </div>
-        <div id="experience-container">
+        <div style="display:block">
+            <label style="display:block">EXP: <div class="inline" id="expcount"> 20/22</div></label>
+            <progress style="width:300px" value="0" max="100" id="expbar"></progress>
+        </div>
+        <div id="skillpoint-container">
             <h3 id="level">Level</h3>
-            <h3 id="skillpoint"></h3>
+            <div class="inline">
+                <h3 class="inline" style="margin-left:30px">Skillpoints: </h3>
+                <h3 id="skillpoint"></h3>
+            </div>
         </div>
     </div>
     <hr/>
     
     <table id="attributes-container" title="Attributes">
+        <tr>
+            <td class="attribute-title" id="atk_title" title="Attack">ATK</td>
+            <td class="attribute-title" id="def_title" title="Defense">DEF</td>
+            <td class="attribute-title" id="agi_title" title="Agility">AGI</td>
+            <td class="attribute-title" id="vit_title" title="Vitality">VIT</td>
+        </tr>
         <tr>
             <td class="attribute button" id="atk" title="Attack"></td>
             <td class="attribute button" id="def" title="Defense"></td>
