@@ -4,13 +4,11 @@ namespace HeroesIIII.Models.Skills
 {
     public class Scavenge : Skill
     {
-        private int _percentChance = 25;
-        private Random _random = new Random();
-
+        private int _chance = 25;
         public Scavenge(Game game) : base(game)
         {
             Name = "Scavenge";
-            Id = 6;
+            Description = $"Adds another {_chance}% chance of getting an item from the enemy after battle.";
             game.WinBattleEvent += Effect;
         }
 
@@ -19,7 +17,7 @@ namespace HeroesIIII.Models.Skills
             var target = ((GameEventArgs)e).Enemy;
             var enemy = target as Enemy;
 
-            if (_random.Next(100) > _percentChance)
+            if (new Random().Next(100) < _chance)
                 Game.GetEnemyDrops(enemy);
         }
     }

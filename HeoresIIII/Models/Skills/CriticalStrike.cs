@@ -4,10 +4,11 @@ namespace HeroesIIII.Models.Skills
 {
     public class CriticalStrike : Skill
     {
+        private int _chance = 10;
         public CriticalStrike(Game game) : base(game)
         {
             Name = "Critical Strike";
-            Id = 2;
+            Description = $"Gives a {_chance}% chance of dealing double damage.";
             game.AttackEvent += Effect;
         }
 
@@ -15,7 +16,8 @@ namespace HeroesIIII.Models.Skills
         {
             var hero = ((Game)sender).Hero;
             var target = ((GameEventArgs)e).Enemy;
-            hero.Attack(target);
+            if (new Random().Next(100) < _chance)
+                hero.Attack(target);
             Console.WriteLine($"{hero} dealt double damage!");
         }
     }

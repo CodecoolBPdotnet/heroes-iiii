@@ -22,11 +22,6 @@ img {
     text-align: center
 }
 
-.skill {
-    padding: 20px;
-    margin-right: 40px;
-}
-
 .button {
     padding: 20px;
     background-color: lightgray;
@@ -45,14 +40,23 @@ img {
     display: inline;
 }
 
-#skillpoint-container{
-    height:50px;
+#skillpoint-container {
+    height: 50px;
 }
 
 #avatar-container {
     width: 100px;
     height: 100px;
 }
+
+.equalDivide {
+    width: 100%;
+}
+
+    .equalDivide tr td {
+        width: 50%;
+        margin: 5px 0;
+    }
 
 .inline {
     display: inline-block;
