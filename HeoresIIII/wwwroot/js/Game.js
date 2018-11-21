@@ -33,7 +33,7 @@ function LoadHero() {
             document.getElementById("expbar").max = game.hero.nextLevelExperienceLimit;
             document.getElementById("expcount").innerHTML = game.hero.experience + " / " + game.hero.nextLevelExperienceLimit;
             document.getElementById("name").innerHTML = hero["name"];
-            document.getElementById("hp").innerHTML = hero["currentHealth"]+ " HP";
+            document.getElementById("hp").innerHTML = hero["currentHealth"] + " HP";
             document.getElementById("level").innerHTML = "Level: " + hero["level"];
             document.getElementById("skillpoint").innerHTML = hero["skillPoints"];
             document.getElementById("atk").innerHTML = hero["damage"];
@@ -49,7 +49,7 @@ function IncreaseAttribute(attribute) {
             method: "put",
         }).then(function (response) {
             if (response.status == 200) {
-                
+
                 switch (attribute) {
                     case "atk":
                         game.hero.damage++;
@@ -69,27 +69,32 @@ function IncreaseAttribute(attribute) {
                         break;
                 }
                 game.hero.skillPoints--;
-                document.getElementById("skillpoint").innerHTML =game.hero.skillPoints;
+                document.getElementById("skillpoint").innerHTML = game.hero.skillPoints;
                 if (game.hero.skillPoints < 1) {
                     SkillPointDisable();
                 }
             }
-            })
+        })
     }
 }
 
 function Fight() {
-    fetch('api/fight')
-    LoadHero()
+    fetch('api/fight').then(
+        function (response) {
+            if (response.status == 200) {
+                LoadHero();
+            }
+        }
+    )
 }
 
 function ButtonSetUp() {
     var element = document.getElementById("fightbutton");
     element.addEventListener("click", Fight);
-    document.getElementById("atk").addEventListener("click", function () { IncreaseAttribute("atk")})
-    document.getElementById("def").addEventListener("click", function () { IncreaseAttribute("def") })
-    document.getElementById("agi").addEventListener("click", function () { IncreaseAttribute("agi") })
-    document.getElementById("vit").addEventListener("click", function () { IncreaseAttribute("vit") })
+    document.getElementById("atk").addEventListener("click", function () { IncreaseAttribute("atk") });
+    document.getElementById("def").addEventListener("click", function () { IncreaseAttribute("def") });
+    document.getElementById("agi").addEventListener("click", function () { IncreaseAttribute("agi") });
+    document.getElementById("vit").addEventListener("click", function () { IncreaseAttribute("vit") });
 }
 
 function StartUp() {
