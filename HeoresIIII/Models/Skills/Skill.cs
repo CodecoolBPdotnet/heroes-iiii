@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HeroesIIII.Models.Skills
 {
@@ -13,7 +10,7 @@ namespace HeroesIIII.Models.Skills
         public Skill(Game game)
         {
             Game = game;
-            game.Hero.LearnedSkills.Add(this);
+            Game.Hero.LearnedSkills.Add(GetType());
         }
         public int Id { get; set; }
         public string Name { get; set; }

@@ -14,7 +14,8 @@
             get => _currentHealth;
             set => _currentHealth = value > MaximumHealth ? MaximumHealth : value;
         }
-        public int Level { get; set; }
+        protected int _level;
+        public abstract int Level { get; set; }
 
         public virtual void Attack(GameEntity target)
         {

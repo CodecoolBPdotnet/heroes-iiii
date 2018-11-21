@@ -4,7 +4,7 @@ namespace HeroesIIII.Models.Skills
 {
     public class CounterAttack : Skill
     {
-        public CounterAttack(Hero hero, Game game) : base(game)
+        public CounterAttack(Game game) : base(game)
         {
             Name = "Counter Attack";
             Id = 1;
@@ -14,7 +14,7 @@ namespace HeroesIIII.Models.Skills
         public override void Effect(object sender, EventArgs e)
         {
             var hero = ((Game)sender).Hero;
-            var target = ((GameEventArgs)e).Target;
+            var target = ((GameEventArgs)e).Enemy;
             hero.Attack(target);
             Console.WriteLine($"{hero} attacked {target} back!");
         }

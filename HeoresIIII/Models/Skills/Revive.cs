@@ -6,7 +6,7 @@ namespace HeroesIIII.Models.Skills
     {
         private int _revivePercent = 60;
         private int _remainingLives = 1;
-        public Revive(Hero hero, Game game) : base(game)
+        public Revive(Game game) : base(game)
         {
             Name = "Revive";
             Id = 5;
