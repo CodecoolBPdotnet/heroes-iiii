@@ -8,12 +8,14 @@ namespace HeroesIIII.Models
 {
     public class Hero : GameEntity
     {
-        private int _randomSkillChance = 15;
+        private int _skillBaseChance = 15;
 
         public event EventHandler NewSkillEvent;
         public void OnNewSkillEvent() => NewSkillEvent?.Invoke(this, null);
         
         private int _experience;
+        private int chance;
+
         public int Experience
         {
             get => _experience;
@@ -30,8 +32,6 @@ namespace HeroesIIII.Models
             set
             {
                 _level = value;
-                if (new Random().Next(100) < _randomSkillChance)
-                    OnNewSkillEvent();
             }
         }
         public int SkillPoints { get; set; }
@@ -66,10 +66,13 @@ namespace HeroesIIII.Models
         public string Picture { get; set; }
         public void LevelUp()
         {
+            ++Level;
             _experience -= NextLevelExperienceLimit;
             SkillPoints += 4;
-            Level++;
             NextLevelExperienceLimit += 100 + 20 * Level;
+            int chance = _skillBaseChance * ((Level + 1) / (LearnedSkills.Count + 1));
+            if (new Random().Next(100) < chance)
+                OnNewSkillEvent();
         }
     }
 }

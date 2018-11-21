@@ -22,7 +22,8 @@ namespace HeroesIIII.Models
         private Hero _hero;
         public Hero Hero
         {
-            get => _hero; set
+            get => _hero;
+            set
             {
                 _hero = value;
                 _hero.NewSkillEvent += NewSkill;
