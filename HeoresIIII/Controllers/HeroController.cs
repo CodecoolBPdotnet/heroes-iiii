@@ -50,38 +50,29 @@ namespace HeroesIIII.Controllers
         }
 
         // PUT: api/Hero/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutHero([FromRoute] int id, [FromBody] Hero hero)
+        [HttpPut("{id}/{attribute}")]
+        public async Task<IActionResult> PutHero([FromRoute] int id, [FromRoute] string attribute)
         {
-            if (!ModelState.IsValid)
+            if (attribute == "atk")
             {
-                return BadRequest(ModelState);
+                _game.Hero.Damage++;
             }
-
-            if (id != hero.Id)
+            else if (attribute == "def")
             {
-                return BadRequest();
+                _game.Hero.Defense++;
             }
-
-            _context.Entry(hero).State = EntityState.Modified;
-
-            try
+            else if (attribute == "agi")
             {
-                await _context.SaveChangesAsync();
+                _game.Hero.Agility++;
             }
-            catch (DbUpdateConcurrencyException)
+            else if (attribute == "vit")
             {
-                if (!HeroExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                _game.Hero.Vitality++;
             }
-
-            return NoContent();
+            _game.Hero.SkillPoints--;
+            _context.Entry(_game.Hero).State = EntityState.Modified;
+            _context.SaveChanges();
+            return Ok();
         }
 
         // POST: api/Hero

@@ -2,24 +2,33 @@
     margin-left: 100px;
 }
 
-div, h2, h3 {
-    /*border: 1px solid red;*/
-}
-
 #avatar-container {
     background-color: lightgray;
 }
+img {
+    width: 100px;
+    max-width: 100px;
+    height:100px;
+    max-height:100px
+}
 
 .attribute {
-    margin-left: 100px
+    margin-left: 100px;
+    background-color: gray;
 }
 
 #skills-container {
+    margin-top: 40px;
     margin-left: 70px;
+}
+
+.attribute-title {
+    text-align: center
 }
 
 .skill {
     padding: 20px;
+    margin-right: 40px;
 }
 
 .button {
@@ -34,17 +43,15 @@ div, h2, h3 {
 
 #level {
     display: inline;
-    margin-left: 95px
 }
 
 #skillpoint {
     display: inline;
-    margin-left: 30px
 }
 
 #avatar-container {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
 }
 
 .inline {
