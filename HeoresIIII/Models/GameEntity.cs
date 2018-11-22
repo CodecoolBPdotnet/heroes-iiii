@@ -20,10 +20,10 @@
         public virtual int Attack(GameEntity target)
         {
             var damage = Damage - (target.Defense / 4);
-            if (_damage < 0)
-                _damage = 0;
-            target.CurrentHealth -= _damage;
-            return _damage;
+            if (damage < 0)
+                damage = 0;
+            target.CurrentHealth -= damage;
+            return damage;
         }
     }
 }
