@@ -45,8 +45,8 @@ img {
     display: inline;
 }
 
-#skillpoint-container{
-    height:70px;
+#skillpoint-container {
+    height: 70px;
 }
 
 #avatar-container {
@@ -92,7 +92,6 @@ img {
     grid-template-areas: 'heropicture heroname herohp enemy enemy enemy' 'heroexp heroexp heroexp enemy enemy enemy' 'heroattr heroattr heroattr enemy enemy enemy' 'heroskill heroskill heroskill enemy enemy enemy';
     grid-gap: 20px;
     background-color: #ffad33;
-    padding: 20px;
     height: 100vh;
 }
 
@@ -101,4 +100,21 @@ img {
         text-align: center;
         padding: 15px 0;
         font-size: 22px;
+    }
+
+#fightlog {
+    height: 60vh;
+    width: 50vw;
+    overflow: auto;
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px
+}
+#fightlog > * {
+    display: block;
+    margin-top: 10px;
+}
+
+    #fightlog > *:first-child {
+        margin-top: 0px;
     }

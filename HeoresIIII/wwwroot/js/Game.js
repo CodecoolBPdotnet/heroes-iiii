@@ -81,11 +81,20 @@ function IncreaseAttribute(attribute) {
 function ShowFightResult(result) {
     document.getElementById("enemy-name").innerHTML = result["defeatedEnemy"]["name"];
     document.getElementById("enemy-attributes-container").style.display = "table";
-    document.getElementById("enemy-atk").innerHTML = result["defeatedEnemy"]["damage"];
+    document.getElementById("enemy-atk").innerHTML = result.defeatedEnemy.damage;
     document.getElementById("enemy-def").innerHTML = result["defeatedEnemy"]["defense"];
     document.getElementById("enemy-agi").innerHTML = result["defeatedEnemy"]["agility"];
     document.getElementById("enemy-vit").innerHTML = result["defeatedEnemy"]["vitality"];
     document.getElementById("enemy-hp").innerHTML = "Maximum HP: " + result["defeatedEnemy"]["maximumHealth"];
+    document.getElementById("fightlog").innerHTML = "";
+    for (var i = 0; i < result.fightLog.length; i++) {
+        if (result.fightLog[i].item1 == "Hero") {
+            document.getElementById("fightlog").innerHTML += '<div style="color:dodgerblue;text-align: left">' + result.fightLog[i].item2 + "</div>"
+        } else {
+            document.getElementById("fightlog").innerHTML += '<div style="color:crimson;text-align: right">' + result.fightLog[i].item2 + "</div>"
+        }
+       
+    }
 }
 
 
