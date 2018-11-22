@@ -2,6 +2,16 @@
     margin: 0;
 }
 
+#enemy-hp{
+    margin:10px;
+
+}#enemy-name{
+    margin:10px;
+}
+#endmessage{
+    margin-top:10px;
+}
+
 #avatar-container {
     background-color: lightgray;
 }
@@ -87,9 +97,24 @@ img {
 }
 
 .grid-enemy {
+    margin-left:5vw;
     grid-area: enemy;
+    width:50vw;
 }
 
+#fightbutton {
+    background-color: #f44336;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
 .grid-container {
     display: grid;
@@ -107,8 +132,8 @@ img {
     }
 
 #fightlog {
-    height: 60vh;
-    width: 50vw;
+    height: 50vh;
+    min-width: 20vw;
     overflow: auto;
     margin-top: 10px;
     padding-left: 20px;

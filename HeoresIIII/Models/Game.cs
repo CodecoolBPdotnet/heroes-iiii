@@ -60,16 +60,14 @@ namespace HeroesIIII.Models
                 HeroTurn += 3 + Hero.Agility * 0.25;
                 if (HeroTurn > 100)
                 {
-                    Hero.Attack(enemy);
-                    fightresult.FightLog.Add(("Hero", $"Hero dealt {Hero.Damage} damage to the {enemy.Name}"));
+                    fightresult.FightLog.Add(("Hero", $"Hero dealt {Hero.Attack(enemy)} damage to the {enemy.Name}"));
                     OnAttackEvent(eventArgs);
                     HeroTurn -= 100;
                 }
                 EnemyTurn += 3 + enemy.Agility * 0.25;
                 if (EnemyTurn > 100)
                 {
-                    enemy.Attack(Hero);
-                    fightresult.FightLog.Add(("Enemy", $"{enemy.Name} dealt {enemy.Damage} damage to the Hero "));
+                    fightresult.FightLog.Add(("Enemy", $"{enemy.Name} dealt {enemy.Attack(Hero)} damage to the Hero "));
                     OnGetHitEvent(eventArgs);
                     EnemyTurn -= 100;
                 }
@@ -77,13 +75,13 @@ namespace HeroesIIII.Models
             if (Hero.CurrentHealth > 0)
             {
                 Hero.Experience += enemy.ExperienceDrop;
-                fightresult.FightEndMessage = $"You defeat {enemy.Name} and you gain {enemy.ExperienceDrop}";
+                fightresult.FightEndMessage = $"You defeated {enemy.Name} and you gained {enemy.ExperienceDrop}";
                 OnWinBattleEvent(eventArgs);
             }
             else
             {
                 // TODO battle lost, hero death
-                fightresult.FightEndMessage = $"You killed by {enemy.Name}";
+                fightresult.FightEndMessage = $"You were killed by {enemy.Name}";
                 OnDeathEvent(eventArgs);
             }
             return fightresult;

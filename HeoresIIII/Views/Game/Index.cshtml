@@ -12,7 +12,7 @@
     <title>Hero Page</title>
 </head>
 <body>
-    <div class="grid-container">
+    <div class="grid-container" >
         <div class="grid-heropicture">
             <div id="avatar-container" class="inline" title="Hero Avatar">
                 <img id="avatar" src="">
@@ -91,6 +91,9 @@
             </table>
         </div>
         <div class="grid-enemy">
+            <button id="fightbutton">
+                Fight
+            </button>
             <H3 id="enemy-name"></H3>
             <h4 id="enemy-hp"></h4>
             <table id="enemy-attributes-container" title="Attributes" style="display:none" align="center">
@@ -107,11 +110,11 @@
                     <td class="attribute button" id="enemy-vit" title="Vitality"></td>
                 </tr>
             </table>
+            <div id="result-title" style="display:none">Fight result</div>
             <div id="fightlog">
             </div>
-            <button id="fightbutton">
-                Fight
-            </button>
+            <div id="endmessage">
+            </div>
         </div>
     </div>
 </body>

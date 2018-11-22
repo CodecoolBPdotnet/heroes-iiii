@@ -76,6 +76,8 @@ function IncreaseAttribute(attribute) {
                     case "vit":
                         game.hero.vitality++;
                         document.getElementById("vit").innerHTML = game.hero.vitality;
+                        game.hero.currentHealth = game.hero.currentHealth + 10;
+                        document.getElementById("hp").innerHTML = game.hero.currentHealth + " HP";
                         break;
                 }
                 game.hero.skillPoints--;
@@ -91,6 +93,7 @@ function IncreaseAttribute(attribute) {
 function ShowFightResult(result) {
     document.getElementById("enemy-name").innerHTML = result["defeatedEnemy"]["name"];
     document.getElementById("enemy-attributes-container").style.display = "table";
+    document.getElementById("result-title").style.display = "grid";
     document.getElementById("enemy-atk").innerHTML = result.defeatedEnemy.damage;
     document.getElementById("enemy-def").innerHTML = result["defeatedEnemy"]["defense"];
     document.getElementById("enemy-agi").innerHTML = result["defeatedEnemy"]["agility"];
@@ -103,8 +106,8 @@ function ShowFightResult(result) {
         } else {
             document.getElementById("fightlog").innerHTML += '<div style="color:crimson;text-align: right">' + result.fightLog[i].item2 + "</div>"
         }
-       
     }
+    document.getElementById("endmessage").innerHTML = result.fightEndMessage;
 }
 
 
