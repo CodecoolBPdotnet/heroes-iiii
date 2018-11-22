@@ -2,6 +2,16 @@
     margin: 0;
 }
 
+#enemy-hp{
+    margin:10px;
+
+}#enemy-name{
+    margin:10px;
+}
+#endmessage{
+    margin-top:10px;
+}
+
 #avatar-container {
     background-color: lightgray;
 }
@@ -41,7 +51,7 @@ img {
 }
 
 #skillpoint-container {
-    height: 50px;
+    height: 70px;
 }
 
 #avatar-container {
@@ -87,16 +97,30 @@ img {
 }
 
 .grid-enemy {
+    margin-left:5vw;
     grid-area: enemy;
+    width:50vw;
 }
 
+#fightbutton {
+    background-color: #f44336;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
 .grid-container {
     display: grid;
     grid-template-areas: 'heropicture heroname herohp enemy enemy enemy' 'heroexp heroexp heroexp enemy enemy enemy' 'heroattr heroattr heroattr enemy enemy enemy' 'heroskill heroskill heroskill enemy enemy enemy';
     grid-gap: 20px;
     background-color: #ffad33;
-    padding: 20px;
     height: 100vh;
 }
 
@@ -106,3 +130,21 @@ img {
         padding: 15px 0;
         font-size: 22px;
     }
+
+#fightlog {
+    height: 50vh;
+    min-width: 20vw;
+    overflow: auto;
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+    #fightlog > * {
+        display: block;
+        margin-top: 10px;
+    }
+
+        #fightlog > *:first-child {
+            margin-top: 0px;
+        }

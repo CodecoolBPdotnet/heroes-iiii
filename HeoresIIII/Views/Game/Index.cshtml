@@ -12,7 +12,7 @@
     <title>Hero Page</title>
 </head>
 <body>
-    <div class="grid-container">
+    <div class="grid-container" >
         <div class="grid-heropicture">
             <div id="avatar-container" class="inline" title="Hero Avatar">
                 <img id="avatar" src="">
@@ -25,13 +25,6 @@
             <h2 id="hp" title="Health Points" class="inline"></h2>
         </div>
         <div class="grid-heroexp">
-            <div style="display:block">
-                <label style="display:block">
-                    EXP:
-                    <div class="inline" id="expcount">0/100</div>
-                </label>
-                <progress style="width:300px" value="0" max="100" id="expbar"></progress>
-            </div>
             <div id="skillpoint-container">
                 <h4 id="level">Level</h4>
                 <div class="inline">
@@ -39,14 +32,21 @@
                     <h4 id="skillpoint"></h4>
                 </div>
             </div>
+            <div style="display:block">
+                <label style="display:block">
+                    EXP:
+                    <div class="inline" id="expcount">0/100</div>
+                </label>
+                <progress style="width:300px" value="0" max="100" id="expbar"></progress>
+            </div>
         </div>
         <div class="grid-heroattr">
             <table id="attributes-container" title="Attributes" align="center">
                 <tr>
-                    <td class="attribute-title" id="atk_title" title="Attack">ATK</td>
-                    <td class="attribute-title" id="def_title" title="Defense">DEF</td>
-                    <td class="attribute-title" id="agi_title" title="Agility">AGI</td>
-                    <td class="attribute-title" id="vit_title" title="Vitality">VIT</td>
+                    <td class="attribute-title" title="Attack">ATK</td>
+                    <td class="attribute-title" title="Defense">DEF</td>
+                    <td class="attribute-title" title="Agility">AGI</td>
+                    <td class="attribute-title" title="Vitality">VIT</td>
                 </tr>
                 <tr>
                     <td class="attribute button" id="atk" title="Attack"></td>
@@ -57,7 +57,7 @@
             </table>
         </div>
         <div class="grid-heroskill">
-            <table id="skills-container" title="Skills" align="center" class="equalDivide" cellpadding="0" cellspacing="0" >
+            <table id="skills-container" title="Skills" align="center" class="equalDivide" cellpadding="0" cellspacing="0">
                 <tr class="skills-row">
                     <td class="button" title="Counter-Attack" id="CounterAttack">
                         <span id="CounterAttack-Icon" class="skill-icon">🤺</span>
@@ -91,13 +91,31 @@
             </table>
         </div>
         <div class="grid-enemy">
-            <div> enemy name</div>
-            <div> enemy stat</div>
             <button id="fightbutton">
                 Fight
             </button>
+            <H3 id="enemy-name"></H3>
+            <h4 id="enemy-hp"></h4>
+            <table id="enemy-attributes-container" title="Attributes" style="display:none" align="center">
+                <tr>
+                    <td class="attribute-title" title="Attack">ATK</td>
+                    <td class="attribute-title" title="Defense">DEF</td>
+                    <td class="attribute-title" title="Agility">AGI</td>
+                    <td class="attribute-title" title="Vitality">VIT</td>
+                </tr>
+                <tr>
+                    <td class="attribute button" id="enemy-atk" title="Attack"></td>
+                    <td class="attribute button" id="enemy-def" title="Defense"></td>
+                    <td class="attribute button" id="enemy-agi" title="Agility"></td>
+                    <td class="attribute button" id="enemy-vit" title="Vitality"></td>
+                </tr>
+            </table>
+            <div id="result-title" style="display:none">Fight result</div>
+            <div id="fightlog">
+            </div>
+            <div id="endmessage">
+            </div>
         </div>
     </div>
-
 </body>
 </html>

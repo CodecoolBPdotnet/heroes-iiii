@@ -25,11 +25,13 @@ namespace HeroesIIII.Controllers
 
         // GET: api/Fight
         [HttpGet]
-        public void Fight()
+        public async Task<IActionResult> Fight()
         {
-            _game.Fight();
+
+            FightResult fightResult = _game.Fight();
             _context.Entry(_game.Hero).State = EntityState.Modified;   
             _context.SaveChanges();
+            return Ok(fightResult);
         }
     }
 }

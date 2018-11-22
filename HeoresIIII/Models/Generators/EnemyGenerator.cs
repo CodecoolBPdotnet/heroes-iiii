@@ -12,7 +12,7 @@
                 MaximumHealth = 10 * (5 + HeroLevel),
                 CurrentHealth = 10 * (5 + HeroLevel)
             };
-            HeroGenerator.DistributeAttributePoints(CreatedEnemy, 5 * (2 + HeroLevel));
+            HeroGenerator.DistributeAttributePoints(CreatedEnemy, 6 * (HeroLevel));
             return CreatedEnemy;
         }
 
