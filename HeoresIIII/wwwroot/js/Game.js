@@ -7,9 +7,7 @@ function SkillPointAvailable() {
         let elem = document.getElementById(skillPointElems[i]);
         elem.style.backgroundColor = "rgb(237, 160, 18)";
         elem.style.cursor = "pointer";
-        elem.addEventListener("click", function () {
-            IncreaseAttribute(elem.id);
-        });
+        elem.addEventListener("click", IncreaseAttributeHandler);
     }
 }
 function SkillPointDisable() {
@@ -17,9 +15,7 @@ function SkillPointDisable() {
         let elem = document.getElementById(skillPointElems[i]);
         elem.style.backgroundColor = "gray";
         elem.style.cursor = "auto";
-        elem.removeEventListener("click", function () {
-            IncreaseAttribute(elem.id);
-        });
+        elem.removeEventListener("click", IncreaseAttributeHandler);
     }
 }
 
@@ -62,7 +58,9 @@ function EnableSkills(hero) {
     }
 }
 
-function IncreaseAttribute(attribute) {
+function IncreaseAttributeHandler(event) {
+    let attribute = event.currentTarget.id;
+
     if (game.hero.skillPoints > 0) {
         fetch('api/hero/1/' + attribute, {
             method: "put",
