@@ -13,8 +13,9 @@ namespace HeroesIIII.Models.Skills
 
         public override void Effect(object sender, EventArgs e)
         {
-            var target = ((GameEventArgs)e).Enemy;
-            var enemy = target as Enemy;
+            var hero = ((Game)sender).Hero;
+            var enemy = ((GameEventArgs)e).Enemy as Enemy;
+            ((GameEventArgs)e).Result.FightLog.Add(("Hero", $"{hero.Name} learned even more from fighting {enemy.Name}!"));
             Game.GetEnemyExp(enemy);
         }
     }

@@ -17,8 +17,10 @@ namespace HeroesIIII.Models.Skills
             var hero = ((Game)sender).Hero;
             var target = ((GameEventArgs)e).Enemy;
             if (new Random().Next(100) < _chance)
-                hero.Attack(target);
-            Console.WriteLine($"{hero} dealt double damage!");
+            {
+                var damage = hero.Attack(target);
+                ((GameEventArgs)e).Result.FightLog.Add(("Hero", $"It was super effective!"));
+            }
         }
     }
 }

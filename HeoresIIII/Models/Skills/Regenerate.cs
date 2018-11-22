@@ -4,7 +4,7 @@ namespace HeroesIIII.Models.Skills
 {
     public class Regenerate : Skill
     {
-        private int _heal = 20;
+        private int _heal = 1;
         public Regenerate(Game game) : base(game)
         {
             Name = "Regenerate";
@@ -15,7 +15,9 @@ namespace HeroesIIII.Models.Skills
         public override void Effect(object sender, EventArgs e)
         {
             var hero = ((Game)sender).Hero;
-            hero.CurrentHealth += hero.MaximumHealth * _heal / 100;
+            var heal = hero.MaximumHealth * _heal / 100;
+            hero.CurrentHealth += heal;
+            ((GameEventArgs)e).Result.FightLog.Add(("Hero", $"{hero.Name} has recovered {heal} points of health."));
         }
     }
 }
