@@ -6,6 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HeroesIIII.Models;
 using HeroesIIII.Models.Generators;
+using Microsoft.AspNetCore.Http.Authentication;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using AuthenticationProperties = Microsoft.AspNetCore.Authentication.AuthenticationProperties;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Globalization;
 
 namespace HeroesIIII.Controllers
 {
@@ -23,7 +29,8 @@ namespace HeroesIIII.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return Redirect("/login/create");
+            // return Redirect("/login/create");
+            return View();
         }
 
         // GET: Login/Details/5
@@ -102,6 +109,47 @@ namespace HeroesIIII.Controllers
             catch
             {
                 return View();
+            }
+        }
+        public async Task Login(string returnUrl = "/")
+        {
+            await HttpContext.ChallengeAsync("Auth0", new AuthenticationProperties() { RedirectUri = returnUrl });
+            //Redirect("/login/GetUserData");
+        }
+
+        [Authorize]
+        public async Task Logout()
+        {
+            await HttpContext.SignOutAsync("Auth0", new AuthenticationProperties
+            {
+                // Indicate here where Auth0 should redirect the user after a logout.
+                // Note that the resulting absolute Uri must be whitelisted in the
+                // **Allowed Logout URLs** settings for the app.
+                RedirectUri = Url.Action("Index", "Home")
+            });
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
+
+        public async Task GetUserData()
+        {
+            // Inside one of your controller actions
+
+            if (User.Identity.IsAuthenticated)
+            {
+                string accessToken = await HttpContext.GetTokenAsync("access_token");
+
+                // if you need to check the access token expiration time, use this value
+                // provided on the authorization response and stored.
+                // do not attempt to inspect/decode the access token
+                DateTime accessTokenExpiresAt = DateTime.Parse(
+                    await HttpContext.GetTokenAsync("expires_at"),
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.RoundtripKind);
+
+                string idToken = await HttpContext.GetTokenAsync("id_token");
+
+                // Now you can use them. For more info on when and how to use the
+                // Access Token and ID Token, see https://auth0.com/docs/tokens
             }
         }
     }
