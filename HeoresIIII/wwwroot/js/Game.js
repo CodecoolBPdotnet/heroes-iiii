@@ -26,7 +26,7 @@ function LoadHero() {
             if (hero.skillPoints > 0) {
                 SkillPointAvailable();
             } else {
-                SkillPointDisable()
+                SkillPointDisable();
             }
             document.getElementById("avatar").src = game.hero.picture;
             document.getElementById("expbar").value = game.hero.experience;
