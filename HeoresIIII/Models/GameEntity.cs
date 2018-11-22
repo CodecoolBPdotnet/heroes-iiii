@@ -19,11 +19,13 @@
 
         public virtual int Attack(GameEntity target)
         {
-            var damage = Damage - (target.Defense / 4);
-            if (_damage < 0)
-                _damage = 0;
-            target.CurrentHealth -= _damage;
-            return _damage;
+            Attack(target, Damage - (target.Defense / 4));
+        }
+        public virtual void Attack(GameEntity target, int damage)
+        {
+            if (damage < 0)
+                damage = 0;
+            target.CurrentHealth -= damage;
         }
     }
 }
