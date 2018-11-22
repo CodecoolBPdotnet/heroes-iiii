@@ -4,12 +4,12 @@ namespace HeroesIIII.Models.Skills
 {
     public class Regenerate : Skill
     {
-        private int _heal = 1;
+        private int _heal = 10;
         public Regenerate(Game game) : base(game)
         {
             Name = "Regenerate";
             Description = $"Regenerates {_heal}% of the Hero's health points after battle.";
-            game.GetHitEvent += Effect;
+            game.WinBattleEvent += Effect;
         }
 
         public override void Effect(object sender, EventArgs e)
