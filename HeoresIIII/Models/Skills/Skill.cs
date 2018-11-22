@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HeroesIIII.Models.Skills
 {
-    public class Skill
+    public abstract class Skill
     {
         [NotMapped]
         public Game Game { get; private set; }
@@ -12,12 +12,9 @@ namespace HeroesIIII.Models.Skills
             Game = game;
             Game.Hero.LearnedSkills.Add(GetType());
         }
-        public int Id { get; set; }
         public string Name { get; set; }
+        public string Description {get; set;}
 
-        public virtual void Effect(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Effect(object sender, EventArgs e);
     }
 }

@@ -12,65 +12,92 @@
     <title>Hero Page</title>
 </head>
 <body>
-    <div id="top-container">
-        <div id="avatar-container" class="inline" title="Hero Avatar">
-            <img id="avatar" src="">
-        </div>
-        <div id="name-container" class="inline">
-            <h2 id="name" title="Name"></h2>
-            <h2 class="inline"> | </h2>
-            <h2 id="hp" title="Health Points" class="inline"></h2>
-        </div>
-        <div style="display:block">
-            <label style="display:block">EXP: <div class="inline" id="expcount"> 20/22</div></label>
-            <progress style="width:300px" value="0" max="100" id="expbar"></progress>
-        </div>
-        <div id="skillpoint-container">
-            <h3 id="level">Level</h3>
-            <div class="inline">
-                <h3 class="inline" style="margin-left:30px">Skillpoints: </h3>
-                <h3 id="skillpoint"></h3>
+    <div class="grid-container">
+        <div class="grid-heropicture">
+            <div id="avatar-container" class="inline" title="Hero Avatar">
+                <img id="avatar" src="">
             </div>
         </div>
+        <div class="grid-heroname">
+            <h2 id="name" title="Name"></h2>
+        </div>
+        <div class="grid-herohp">
+            <h2 id="hp" title="Health Points" class="inline"></h2>
+        </div>
+        <div class="grid-heroexp">
+            <div style="display:block">
+                <label style="display:block">
+                    EXP:
+                    <div class="inline" id="expcount">0/100</div>
+                </label>
+                <progress style="width:300px" value="0" max="100" id="expbar"></progress>
+            </div>
+            <div id="skillpoint-container">
+                <h4 id="level">Level</h4>
+                <div class="inline">
+                    <h4 class="inline" style="margin-left:30px">Skillpoints: </h4>
+                    <h4 id="skillpoint"></h4>
+                </div>
+            </div>
+        </div>
+        <div class="grid-heroattr">
+            <table id="attributes-container" title="Attributes" align="center">
+                <tr>
+                    <td class="attribute-title" id="atk_title" title="Attack">ATK</td>
+                    <td class="attribute-title" id="def_title" title="Defense">DEF</td>
+                    <td class="attribute-title" id="agi_title" title="Agility">AGI</td>
+                    <td class="attribute-title" id="vit_title" title="Vitality">VIT</td>
+                </tr>
+                <tr>
+                    <td class="attribute button" id="atk" title="Attack"></td>
+                    <td class="attribute button" id="def" title="Defense"></td>
+                    <td class="attribute button" id="agi" title="Agility"></td>
+                    <td class="attribute button" id="vit" title="Vitality"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="grid-heroskill">
+            <table id="skills-container" title="Skills" align="center" class="equalDivide" cellpadding="0" cellspacing="0" >
+                <tr class="skills-row">
+                    <td class="button" title="Counter-Attack" id="CounterAttack">
+                        <span id="CounterAttack-Icon" class="skill-icon">🤺</span>
+                        <span id="CounterAttack-Desc">asdasda</span>
+                    </td>
+                    <td class="button" title="Critical Strike" id="CriticalStrike">
+                        <span id="CriticalStrike-Icon" class="skill-icon">⚔</span>
+                        <span id="CriticalStrike-Desc">asdasda</span>
+                    </td>
+                </tr>
+                <tr class="skills-row">
+                    <td class="button" title="Learning" id="Learning">
+                        <span id="Learning-Icon" class="skill-icon">📖</span>
+                        <span id="Learning-Desc">asdasda</span>
+                    </td>
+                    <td class="button" title="Regenerate" id="Regenerate">
+                        <span id="Regenerate-Icon" class="skill-icon">💕</span>
+                        <span id="Regenerate-Desc">asdasda</span>
+                    </td>
+                </tr>
+                <tr class="skills-row">
+                    <td class="button" title="Revive" id="Revive">
+                        <span id="Revive-Icon" class="skill-icon">💖</span>
+                        <span id="Revive-Desc">asdaasdasdsadadsda</span>
+                    </td>
+                    <td class="button" title="Scavenge" id="Scavenge">
+                        <span id="Scavenge-Icon" class="skill-icon">☠</span>
+                        <span id="Scavenge-Desc">asdasda</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="grid-enemy">
+            <div> enemy name</div>
+            <div> enemy stat</div>
+            <button id="fightbutton">
+                Fight
+            </button>
+        </div>
     </div>
-    <hr/>
-    
-    <table id="attributes-container" title="Attributes">
-        <tr>
-            <td class="attribute-title" id="atk_title" title="Attack">ATK</td>
-            <td class="attribute-title" id="def_title" title="Defense">DEF</td>
-            <td class="attribute-title" id="agi_title" title="Agility">AGI</td>
-            <td class="attribute-title" id="vit_title" title="Vitality">VIT</td>
-        </tr>
-        <tr>
-            <td class="attribute button" id="atk" title="Attack"></td>
-            <td class="attribute button" id="def" title="Defense"></td>
-            <td class="attribute button" id="agi" title="Agility"></td>
-            <td class="attribute button" id="vit" title="Vitality"></td>
-        </tr>
-    </table>
-    <table id="skills-container" title="Skills">
-        <tr class="skills-row">
-            <td class="skill button" title="CounterAttacck">1</td>
-            <td class="skill button" title="CriticalStrike">2</td>
-        </tr>
-        <tr class="skills-row">
-            <td class="skill button" title="Learning">3</td>
-            <td class="skill button" title="Regenerate">4</td>
-        </tr>
-        <tr class="skills-row">
-            <td class="skill button" title="Revive">5</td>
-            <td class="skill button" title="Scavenge">6</td>
-        </tr>
-    </table>
-
-    <button id="fightbutton">
-        Fight
-    </button>
 
 </body>
 </html>
-
-
-
-
