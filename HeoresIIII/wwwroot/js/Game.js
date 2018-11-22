@@ -26,21 +26,31 @@ function LoadHero() {
             if (hero.skillPoints > 0) {
                 SkillPointAvailable();
             } else {
-                SkillPointDisable()
+                SkillPointDisable();
             }
             document.getElementById("avatar").src = game.hero.picture;
             document.getElementById("expbar").value = game.hero.experience;
             document.getElementById("expbar").max = game.hero.nextLevelExperienceLimit;
             document.getElementById("expcount").innerHTML = game.hero.experience + " / " + game.hero.nextLevelExperienceLimit;
-            document.getElementById("name").innerHTML = hero["name"];
-            document.getElementById("hp").innerHTML = hero["currentHealth"] + " HP";
-            document.getElementById("level").innerHTML = "Level: " + hero["level"];
-            document.getElementById("skillpoint").innerHTML = hero["skillPoints"];
-            document.getElementById("atk").innerHTML = hero["damage"];
-            document.getElementById("def").innerHTML = hero["defense"];
-            document.getElementById("agi").innerHTML = hero["agility"];
-            document.getElementById("vit").innerHTML = hero["vitality"];
+            document.getElementById("name").innerHTML = hero.name;
+            document.getElementById("hp").innerHTML = hero.currentHealth + " HP";
+            document.getElementById("level").innerHTML = "Level: " + hero.level;
+            document.getElementById("skillpoint").innerHTML = hero.skillPoints;
+            document.getElementById("atk").innerHTML = hero.damage;
+            document.getElementById("def").innerHTML = hero.defense;
+            document.getElementById("agi").innerHTML = hero.agility;
+            document.getElementById("vit").innerHTML = hero.vitality;
+            EnableSkills(hero);
         });
+}
+
+function EnableSkills(hero) {
+    let regularExpression = /\HeroesIIII\.[A-z]*(?:\.\S+)?\.(\w+)/;
+    for (let i = 0; i < hero.learnedSkills.length; i++) {
+        let skillString = hero.learnedSkills[i];
+        let skill = regularExpression.exec(skillString)[1];
+        document.getElementById(skill).style.backgroundColor = "#ffad33";
+    }
 }
 
 function IncreaseAttribute(attribute) {

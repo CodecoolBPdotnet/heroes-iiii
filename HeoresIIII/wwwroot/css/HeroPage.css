@@ -22,11 +22,6 @@ img {
     text-align: center
 }
 
-.skill {
-    padding: 20px;
-    margin-right: 40px;
-}
-
 .button {
     padding: 20px;
     background-color: lightgray;
@@ -53,6 +48,15 @@ img {
     width: 100px;
     height: 100px;
 }
+
+.equalDivide {
+    width: 100%;
+}
+
+    .equalDivide tr td {
+        width: 50%;
+        margin: 5px 0;
+    }
 
 .inline {
     display: inline-block;
@@ -110,11 +114,12 @@ img {
     padding-left: 20px;
     padding-right: 20px
 }
-#fightlog > * {
-    display: block;
-    margin-top: 10px;
-}
 
-    #fightlog > *:first-child {
-        margin-top: 0px;
+    #fightlog > * {
+        display: block;
+        margin-top: 10px;
     }
+
+        #fightlog > *:first-child {
+            margin-top: 0px;
+        }

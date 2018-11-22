@@ -7,7 +7,7 @@ namespace HeroesIIII.Models.Skills
         public Learning(Game game) : base(game)
         {
             Name = "Learning";
-            Id = 3;
+            Description = $"Recieve 2 times the experience points for defeating an enemy.";
             game.WinBattleEvent += Effect;
         }
 

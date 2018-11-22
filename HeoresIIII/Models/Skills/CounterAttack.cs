@@ -4,10 +4,11 @@ namespace HeroesIIII.Models.Skills
 {
     public class CounterAttack : Skill
     {
+        private int _chance = 30;
         public CounterAttack(Game game) : base(game)
         {
             Name = "Counter Attack";
-            Id = 1;
+            Description = $"When hit, gives a {_chance}% chance of attacking the enemy back.";
             game.GetHitEvent += Effect;
         }
 
@@ -15,7 +16,10 @@ namespace HeroesIIII.Models.Skills
         {
             var hero = ((Game)sender).Hero;
             var target = ((GameEventArgs)e).Enemy;
-            hero.Attack(target);
+            if (new Random().Next(100) < _chance)
+            {
+                hero.Attack(target);
+            }
             Console.WriteLine($"{hero} attacked {target} back!");
         }
     }

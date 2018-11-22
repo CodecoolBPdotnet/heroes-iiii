@@ -33,7 +33,9 @@ namespace HeroesIIII.Models
         private void NewSkill(object sender, EventArgs e)
         {
             List<Type> availableSkills = Hero.Skills.Except(Hero.LearnedSkills).ToList();
-            var randSkill = Hero.Skills[new Random().Next(Hero.Skills.Count - 1)];
+            if (availableSkills.Count < 1) return;
+
+            var randSkill = availableSkills[new Random().Next(availableSkills.Count - 1)];
             randSkill
                 .GetConstructor(new Type[] { GetType() })
                 .Invoke(new object[] { this });

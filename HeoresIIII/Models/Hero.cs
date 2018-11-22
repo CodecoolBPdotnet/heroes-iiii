@@ -14,7 +14,6 @@ namespace HeroesIIII.Models
         public void OnNewSkillEvent() => NewSkillEvent?.Invoke(this, null);
         
         private int _experience;
-        private int chance;
 
         public int Experience
         {
