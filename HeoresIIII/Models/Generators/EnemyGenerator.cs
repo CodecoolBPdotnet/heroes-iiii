@@ -18,8 +18,7 @@
 
         private string GenerateRandomEnemyName()
         {
-            string RandomlyGeneratedName = "Bandit";
-            return RandomlyGeneratedName;
+            return HeroGenerator.GenerateRandomHeroName();
         }
     }
 }
