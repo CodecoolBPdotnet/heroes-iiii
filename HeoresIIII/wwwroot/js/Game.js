@@ -3,16 +3,20 @@
 var game = {};
 
 function SkillPointAvailable() {
-    document.getElementById("atk").style.backgroundColor = "rgb(237, 160, 18)";
-    document.getElementById("def").style.backgroundColor = "rgb(237, 160, 18)";
-    document.getElementById("agi").style.backgroundColor = "rgb(237, 160, 18)";
-    document.getElementById("vit").style.backgroundColor = "rgb(237, 160, 18)";
+    for (let i = 0; i < skillPointElems.length; i++) {
+        let elem = document.getElementById(skillPointElems[i]);
+        elem.style.backgroundColor = "rgb(237, 160, 18)";
+        elem.style.cursor = "pointer";
+        elem.addEventListener("click", IncreaseAttributeHandler);
+    }
 }
 function SkillPointDisable() {
-    document.getElementById("atk").style.backgroundColor = "gray";
-    document.getElementById("def").style.backgroundColor = "gray";
-    document.getElementById("agi").style.backgroundColor = "gray";
-    document.getElementById("vit").style.backgroundColor = "gray";
+    for (let i = 0; i < skillPointElems.length; i++) {
+        let elem = document.getElementById(skillPointElems[i]);
+        elem.style.backgroundColor = "gray";
+        elem.style.cursor = "auto";
+        elem.removeEventListener("click", IncreaseAttributeHandler);
+    }
 }
 
 function LoadHero() {
@@ -49,11 +53,14 @@ function EnableSkills(hero) {
     for (let i = 0; i < hero.learnedSkills.length; i++) {
         let skillString = hero.learnedSkills[i];
         let skill = regularExpression.exec(skillString)[1];
-        document.getElementById(skill).style.backgroundColor = "#ffad33";
+        let element = document.getElementById(skill);
+        element.style.backgroundColor = "#ffad33";
     }
 }
 
-function IncreaseAttribute(attribute) {
+function IncreaseAttributeHandler(event) {
+    let attribute = event.currentTarget.id;
+
     if (game.hero.skillPoints > 0) {
         fetch('api/hero/1/' + attribute, {
             method: "put",
@@ -127,14 +134,16 @@ function Fight() {
 function ButtonSetUp() {
     var element = document.getElementById("fightbutton");
     element.addEventListener("click", Fight);
-    document.getElementById("atk").addEventListener("click", function () { IncreaseAttribute("atk") });
-    document.getElementById("def").addEventListener("click", function () { IncreaseAttribute("def") });
-    document.getElementById("agi").addEventListener("click", function () { IncreaseAttribute("agi") });
-    document.getElementById("vit").addEventListener("click", function () { IncreaseAttribute("vit") });
+}
+
+function SetUpConstants() {
+    skillPointElems = ["atk","def", "agi", "vit"]
 }
 
 function StartUp() {
+    SetUpConstants();
     LoadHero();
     ButtonSetUp();
 }
 
+skillPointElems = null;

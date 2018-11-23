@@ -2,14 +2,20 @@
     margin: 0;
 }
 
-#enemy-hp{
-    margin:10px;
-
-}#enemy-name{
-    margin:10px;
+#enemy-hp {
+    margin: 10px;
 }
-#endmessage{
-    margin-top:10px;
+
+#enemy-name {
+    margin: 10px;
+}
+
+#endmessage {
+    margin-top: 10px;
+}
+
+#skills-container {
+    overflow: auto;
 }
 
 #avatar-container {
@@ -97,9 +103,9 @@ img {
 }
 
 .grid-enemy {
-    margin-left:5vw;
+    margin-left: 5vw;
     grid-area: enemy;
-    width:50vw;
+    width: 50vw;
 }
 
 #fightbutton {
@@ -118,7 +124,11 @@ img {
 
 .grid-container {
     display: grid;
-    grid-template-areas: 'heropicture heroname herohp enemy enemy enemy' 'heroexp heroexp heroexp enemy enemy enemy' 'heroattr heroattr heroattr enemy enemy enemy' 'heroskill heroskill heroskill enemy enemy enemy';
+    grid-template-areas:
+        'heropicture heroname heroname herohp enemy enemy'
+        'heroexp heroexp heroattr heroattr enemy enemy'
+        'heroskill heroskill heroskill heroskill enemy enemy'
+        'heroskill heroskill heroskill heroskill enemy enemy';
     grid-gap: 20px;
     background-color: #ffad33;
     height: 100vh;
@@ -132,7 +142,7 @@ img {
     }
 
 #fightlog {
-    height: 50vh;
+    height: 45vh;
     min-width: 20vw;
     overflow: auto;
     margin-top: 10px;
@@ -148,3 +158,11 @@ img {
         #fightlog > *:first-child {
             margin-top: 0px;
         }
+
+
+.unselectable {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
