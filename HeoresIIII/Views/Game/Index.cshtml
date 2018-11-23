@@ -14,7 +14,7 @@
 <body>
     <div class="grid-container" >
         <div class="grid-heropicture">
-            <div id="avatar-container" class="inline" title="Hero Avatar">
+            <div id="avatar-container" class="inline unselectable" title="Hero Avatar">
                 <img id="avatar" src="">
             </div>
         </div>
@@ -49,49 +49,49 @@
                     <td class="attribute-title" title="Vitality">VIT</td>
                 </tr>
                 <tr>
-                    <td class="attribute button" id="atk" title="Attack"></td>
-                    <td class="attribute button" id="def" title="Defense"></td>
-                    <td class="attribute button" id="agi" title="Agility"></td>
-                    <td class="attribute button" id="vit" title="Vitality"></td>
+                    <td class="attribute button unselectable" id="atk" title="Attack"></td>
+                    <td class="attribute button unselectable" id="def" title="Defense"></td>
+                    <td class="attribute button unselectable" id="agi" title="Agility"></td>
+                    <td class="attribute button unselectable" id="vit" title="Vitality"></td>
                 </tr>
             </table>
         </div>
-        <div class="grid-heroskill">
-            <table id="skills-container" title="Skills" align="center" class="equalDivide" cellpadding="0" cellspacing="0">
+        <div id="skills-container" class="grid-heroskill">
+            <table id="skills-table" title="Skills" align="center" class="equalDivide" cellpadding="0" cellspacing="0">
                 <tr class="skills-row">
-                    <td class="button" title="Counter-Attack" id="CounterAttack">
+                    <td class="button unselectable" title="Counter-Attack" id="CounterAttack">
                         <span id="CounterAttack-Icon" class="skill-icon">🤺</span>
-                        <span id="CounterAttack-Desc">asdasda</span>
+                        <span id="CounterAttack-Desc">When hit, gives a certain chance of attacking the enemy back.</span>
                     </td>
-                    <td class="button" title="Critical Strike" id="CriticalStrike">
+                    <td class="button unselectable" title="Critical Strike" id="CriticalStrike">
                         <span id="CriticalStrike-Icon" class="skill-icon">⚔</span>
-                        <span id="CriticalStrike-Desc">asdasda</span>
+                        <span id="CriticalStrike-Desc">Gives a small chance of dealing double damage.</span>
                     </td>
                 </tr>
                 <tr class="skills-row">
-                    <td class="button" title="Learning" id="Learning">
+                    <td class="button unselectable" title="Learning" id="Learning">
                         <span id="Learning-Icon" class="skill-icon">📖</span>
-                        <span id="Learning-Desc">asdasda</span>
+                        <span id="Learning-Desc">Recieve 2 times the experience points for defeating an enemy.</span>
                     </td>
-                    <td class="button" title="Regenerate" id="Regenerate">
+                    <td class="button unselectable" title="Regenerate" id="Regenerate">
                         <span id="Regenerate-Icon" class="skill-icon">💕</span>
-                        <span id="Regenerate-Desc">asdasda</span>
+                        <span id="Regenerate-Desc">Regenerates a small percenage of the Hero's health points after battle.</span>
                     </td>
                 </tr>
                 <tr class="skills-row">
-                    <td class="button" title="Revive" id="Revive">
+                    <td class="button unselectable" title="Revive" id="Revive">
                         <span id="Revive-Icon" class="skill-icon">💖</span>
-                        <span id="Revive-Desc">asdaasdasdsadadsda</span>
+                        <span id="Revive-Desc">Has a chance of reviving the Hero 1 time.</span>
                     </td>
-                    <td class="button" title="Scavenge" id="Scavenge">
+                    <td class="button unselectable" title="Scavenge" id="Scavenge">
                         <span id="Scavenge-Icon" class="skill-icon">☠</span>
-                        <span id="Scavenge-Desc">asdasda</span>
+                        <span id="Scavenge-Desc">Adds another chance of getting an item from the enemy after battle.</span>
                     </td>
                 </tr>
             </table>
         </div>
         <div class="grid-enemy">
-            <button id="fightbutton">
+            <button id="fightbutton" class="unselectable">
                 Fight
             </button>
             <H3 id="enemy-name"></H3>
@@ -104,10 +104,10 @@
                     <td class="attribute-title" title="Vitality">VIT</td>
                 </tr>
                 <tr>
-                    <td class="attribute button" id="enemy-atk" title="Attack"></td>
-                    <td class="attribute button" id="enemy-def" title="Defense"></td>
-                    <td class="attribute button" id="enemy-agi" title="Agility"></td>
-                    <td class="attribute button" id="enemy-vit" title="Vitality"></td>
+                    <td class="attribute button unselectable" id="enemy-atk" title="Attack"></td>
+                    <td class="attribute button unselectable" id="enemy-def" title="Defense"></td>
+                    <td class="attribute button unselectable" id="enemy-agi" title="Agility"></td>
+                    <td class="attribute button unselectable" id="enemy-vit" title="Vitality"></td>
                 </tr>
             </table>
             <div id="result-title" style="display:none">Fight result</div>

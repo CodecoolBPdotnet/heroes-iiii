@@ -52,7 +52,7 @@ namespace HeroesIIII.Models
         {
             FightResult fightresult = new FightResult();
             fightresult.DefeatedEnemy = enemy;
-            var eventArgs = new GameEventArgs { Enemy = enemy };
+            var eventArgs = new GameEventArgs { Enemy = enemy, Result = fightresult };
             double HeroTurn = 0;
             double EnemyTurn = 0;
             while (Hero.CurrentHealth > 0 && enemy.CurrentHealth > 0)
@@ -60,7 +60,7 @@ namespace HeroesIIII.Models
                 HeroTurn += 3 + Hero.Agility * 0.25;
                 if (HeroTurn > 100)
                 {
-                    fightresult.FightLog.Add(("Hero", $"Hero dealt {Hero.Attack(enemy)} damage to the {enemy.Name}"));
+                    fightresult.FightLog.Add(("Hero", $"{Hero.FirstName} dealt {Hero.Attack(enemy)} damage to the {enemy.Name}"));
                     OnAttackEvent(eventArgs);
                     HeroTurn -= 100;
                 }
