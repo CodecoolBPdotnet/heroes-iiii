@@ -14,11 +14,13 @@ namespace HeroesIIII.Models.Skills
 
         public override void Effect(object sender, EventArgs e)
         {
+            var log = ((GameEventArgs)e).Result.FightLog;
             var target = ((GameEventArgs)e).Enemy;
             var enemy = target as Enemy;
-
-            if (new Random().Next(100) < _chance)
+            if (new Random().Next(100) < _chance) { 
                 Game.GetEnemyDrops(enemy);
+                log.Add(("Hero", "Error: Scavenge skill not implemented yet"));
+            }
         }
     }
 }

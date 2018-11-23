@@ -53,6 +53,10 @@ namespace HeroesIIII.Controllers
         [HttpPut("{id}/{attribute}")]
         public async Task<IActionResult> PutHero([FromRoute] int id, [FromRoute] string attribute)
         {
+            if (_game.Hero.SkillPoints < 1)
+            {
+                return StatusCode(400);
+            }
             if (attribute == "atk")
             {
                 _game.Hero.Damage++;
@@ -67,7 +71,10 @@ namespace HeroesIIII.Controllers
             }
             else if (attribute == "vit")
             {
+                _game.Hero.MaximumHealth = _game.Hero.MaximumHealth + 10;
+                _game.Hero.CurrentHealth = _game.Hero.CurrentHealth + 10;
                 _game.Hero.Vitality++;
+
             }
             _game.Hero.SkillPoints--;
             _context.Entry(_game.Hero).State = EntityState.Modified;

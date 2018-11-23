@@ -6,5 +6,6 @@ namespace HeroesIIII.Models
     {
         public Hero Hero;
         public GameEntity Enemy;
+        public FightResult Result;
     }
 }

@@ -12,14 +12,13 @@
                 MaximumHealth = 10 * (5 + HeroLevel),
                 CurrentHealth = 10 * (5 + HeroLevel)
             };
-            HeroGenerator.DistributeAttributePoints(CreatedEnemy, 5 * (2 + HeroLevel));
+            HeroGenerator.DistributeAttributePoints(CreatedEnemy, 6 * (HeroLevel));
             return CreatedEnemy;
         }
 
         private string GenerateRandomEnemyName()
         {
-            string RandomlyGeneratedName = "Bandit";
-            return RandomlyGeneratedName;
+            return HeroGenerator.GenerateRandomHeroName();
         }
     }
 }

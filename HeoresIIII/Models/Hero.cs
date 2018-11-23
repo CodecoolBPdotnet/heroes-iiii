@@ -12,7 +12,7 @@ namespace HeroesIIII.Models
 
         public event EventHandler NewSkillEvent;
         public void OnNewSkillEvent() => NewSkillEvent?.Invoke(this, null);
-        
+
         private int _experience;
 
         public int Experience
@@ -35,7 +35,9 @@ namespace HeroesIIII.Models
         }
         public int SkillPoints { get; set; }
         public int NextLevelExperienceLimit { get; set; }
-        
+
+        public string FirstName { get => new string(Name.TakeWhile(ch => ch != ' ').ToArray()); }
+
         [NotMapped]
         public List<Type> LearnedSkills { get; set; } = new List<Type>();
 

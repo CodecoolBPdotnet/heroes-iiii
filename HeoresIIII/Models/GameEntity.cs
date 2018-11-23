@@ -17,9 +17,13 @@
         protected int _level;
         public abstract int Level { get; set; }
 
-        public virtual void Attack(GameEntity target)
+        public virtual int Attack(GameEntity target)
         {
-            target.CurrentHealth -= Damage - (target.Defense / 2);
+            var damage = Damage - (target.Defense / 4);
+            if (damage < 0)
+                damage = 0;
+            target.CurrentHealth -= damage;
+            return damage;
         }
     }
 }

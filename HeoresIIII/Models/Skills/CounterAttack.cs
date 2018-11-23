@@ -18,9 +18,9 @@ namespace HeroesIIII.Models.Skills
             var target = ((GameEventArgs)e).Enemy;
             if (new Random().Next(100) < _chance)
             {
-                hero.Attack(target);
+                var damage = hero.Attack(target);
+                ((GameEventArgs)e).Result.FightLog.Add(("Hero", $"{hero.FirstName} counterattacked with {damage} damage!"));
             }
-            Console.WriteLine($"{hero} attacked {target} back!");
         }
     }
 }

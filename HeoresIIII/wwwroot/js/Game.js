@@ -3,16 +3,20 @@
 var game = {};
 
 function SkillPointAvailable() {
-    document.getElementById("atk").style.backgroundColor = "rgb(237, 160, 18)";
-    document.getElementById("def").style.backgroundColor = "rgb(237, 160, 18)";
-    document.getElementById("agi").style.backgroundColor = "rgb(237, 160, 18)";
-    document.getElementById("vit").style.backgroundColor = "rgb(237, 160, 18)";
+    for (let i = 0; i < skillPointElems.length; i++) {
+        let elem = document.getElementById(skillPointElems[i]);
+        elem.style.backgroundColor = "rgb(237, 160, 18)";
+        elem.style.cursor = "pointer";
+        elem.addEventListener("click", IncreaseAttributeHandler);
+    }
 }
 function SkillPointDisable() {
-    document.getElementById("atk").style.backgroundColor = "gray";
-    document.getElementById("def").style.backgroundColor = "gray";
-    document.getElementById("agi").style.backgroundColor = "gray";
-    document.getElementById("vit").style.backgroundColor = "gray";
+    for (let i = 0; i < skillPointElems.length; i++) {
+        let elem = document.getElementById(skillPointElems[i]);
+        elem.style.backgroundColor = "gray";
+        elem.style.cursor = "auto";
+        elem.removeEventListener("click", IncreaseAttributeHandler);
+    }
 }
 
 function LoadHero() {
@@ -49,11 +53,14 @@ function EnableSkills(hero) {
     for (let i = 0; i < hero.learnedSkills.length; i++) {
         let skillString = hero.learnedSkills[i];
         let skill = regularExpression.exec(skillString)[1];
-        document.getElementById(skill).style.backgroundColor = "#ffad33";
+        let element = document.getElementById(skill);
+        element.style.backgroundColor = "#ffad33";
     }
 }
 
-function IncreaseAttribute(attribute) {
+function IncreaseAttributeHandler(event) {
+    let attribute = event.currentTarget.id;
+
     if (game.hero.skillPoints > 0) {
         fetch('api/hero/1/' + attribute, {
             method: "put",
@@ -76,6 +83,8 @@ function IncreaseAttribute(attribute) {
                     case "vit":
                         game.hero.vitality++;
                         document.getElementById("vit").innerHTML = game.hero.vitality;
+                        game.hero.currentHealth = game.hero.currentHealth + 10;
+                        document.getElementById("hp").innerHTML = game.hero.currentHealth + " HP";
                         break;
                 }
                 game.hero.skillPoints--;
@@ -88,27 +97,53 @@ function IncreaseAttribute(attribute) {
     }
 }
 
+function ShowFightResult(result) {
+    document.getElementById("enemy-name").innerHTML = result["defeatedEnemy"]["name"];
+    document.getElementById("enemy-attributes-container").style.display = "table";
+    document.getElementById("result-title").style.display = "grid";
+    document.getElementById("enemy-atk").innerHTML = result.defeatedEnemy.damage;
+    document.getElementById("enemy-def").innerHTML = result["defeatedEnemy"]["defense"];
+    document.getElementById("enemy-agi").innerHTML = result["defeatedEnemy"]["agility"];
+    document.getElementById("enemy-vit").innerHTML = result["defeatedEnemy"]["vitality"];
+    document.getElementById("enemy-hp").innerHTML = "Maximum HP: " + result["defeatedEnemy"]["maximumHealth"];
+    document.getElementById("fightlog").innerHTML = "";
+    for (var i = 0; i < result.fightLog.length; i++) {
+        if (result.fightLog[i].item1 == "Hero") {
+            document.getElementById("fightlog").innerHTML += '<div style="color:dodgerblue;text-align: left">' + result.fightLog[i].item2 + "</div>"
+        } else {
+            document.getElementById("fightlog").innerHTML += '<div style="color:crimson;text-align: right">' + result.fightLog[i].item2 + "</div>"
+        }
+    }
+    document.getElementById("endmessage").innerHTML = result.fightEndMessage;
+}
+
+
 function Fight() {
     fetch('api/fight').then(
         function (response) {
             if (response.status == 200) {
                 LoadHero();
+                return response.json();
             }
         }
-    )
+    ).then(function (myJson) {
+        ShowFightResult(myJson)
+    })
 }
 
 function ButtonSetUp() {
     var element = document.getElementById("fightbutton");
     element.addEventListener("click", Fight);
-    document.getElementById("atk").addEventListener("click", function () { IncreaseAttribute("atk") });
-    document.getElementById("def").addEventListener("click", function () { IncreaseAttribute("def") });
-    document.getElementById("agi").addEventListener("click", function () { IncreaseAttribute("agi") });
-    document.getElementById("vit").addEventListener("click", function () { IncreaseAttribute("vit") });
+}
+
+function SetUpConstants() {
+    skillPointElems = ["atk","def", "agi", "vit"]
 }
 
 function StartUp() {
+    SetUpConstants();
     LoadHero();
     ButtonSetUp();
 }
 
+skillPointElems = null;
