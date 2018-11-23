@@ -23,7 +23,7 @@ namespace HeroesIIII.Models.Generators
             return CreatedHero;
         }
 
-        private string GenerateRandomHeroName()
+        public static string GenerateRandomHeroName()
         {
             HttpClient client = new HttpClient();
             string response = client.GetStringAsync("http://names.drycodes.com/10?nameOptions=funnyWords").Result;
